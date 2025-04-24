@@ -47,11 +47,11 @@ const HeroSection: React.FC = () => {
     return (
         <div className="relative w-full overflow-hidden bg-[#F3EDED] min-h-screen">
             <Navigation />
-            <div className="container mx-auto px-4 pt-24">
-                <div className="flex flex-col md:grid md:grid-cols-2 gap-8 items-center min-h-[80vh]">
-                    <div className="relative z-10 space-y-6 lg:ml-56">
-                        <div className="mb-24" ref={logoRef}>
-                            <FVALogo width="200px" height="100px" className="mb-6" />
+            <div className="container mx-auto px-6 pt-0 md:px-4 md:pt-32">
+                <div className="flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-8 items-start md:items-center min-h-[60vh] md:min-h-[80vh]">
+                    <div className="relative z-10 space-y-4 md:space-y-6 lg:ml-56">
+                        <div className="mt-2 md:mt-0" ref={logoRef}>
+                            <FVALogo width="180px" height="90px" className="md:w-[200px] md:h-[100px]" />
                         </div>
                         <h2 className="text-7xl font-light leading-tight">
                             <span className="text-[#EE7A3F] md:inline block">BETTER</span>
