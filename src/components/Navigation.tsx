@@ -18,7 +18,7 @@ const Navigation: React.FC = () => {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/80 backdrop-blur-sm'}`}>
+            <header className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2 transition-all z-1100 duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/80 backdrop-blur-sm'}`}>
                 <div className="flex items-center">
                     <Link to="/">
                         <img src={logo} alt="FVA Logo" className="w-14 h-14 transition-all duration-300" style={{ cursor: 'pointer' }} />
