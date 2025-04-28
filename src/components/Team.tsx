@@ -77,7 +77,7 @@ const Team: React.FC = () => {
             <div className="container mx-auto px-4">
                 <h2 className="text-[#0d46d7] text-4xl font-bold mb-8 text-center">Meet Our Team</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    {displayedMembers.map((member, index) => (
+                    {displayedMembers.map(member => (
                         <div
                             key={member.name}
                             className="relative group cursor-pointer overflow-hidden bg-white rounded-lg shadow-md"
