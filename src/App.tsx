@@ -1,4 +1,3 @@
-import React from 'react';
 import Team from './components/Team';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HeroSection from './components/HeroSection';
