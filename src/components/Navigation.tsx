@@ -25,12 +25,45 @@ const Navigation: React.FC = () => {
                     </Link>
                 </div>
                 <nav className="hidden md:flex text-xl space-x-8 text-gray-800 font-medium">
-                    <Link to="/" className="hover:text-blue-700 transition-colors">HOME</Link>
-                    <a href="#about" className="hover:text-blue-700 transition-colors">ABOUT</a>
-                    <a href="#competitions" className="hover:text-blue-700 transition-colors">COMPETITIONS</a>
-                    <a href="#support" className="hover:text-blue-700 transition-colors">SUPPORT US</a>
-                    <Link to="/team" className="hover:text-blue-700 transition-colors">TEAM</Link>
-                    <a href="#contact" className="hover:text-blue-700 transition-colors">CONTACT</a>
+                    <a href="#home" className="hover:text-blue-700 transition-colors" onClick={e => {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}>HOME</a>
+                    <a href="#about" className="hover:text-blue-700 transition-colors" onClick={e => {
+                        e.preventDefault();
+                        const aboutSection = document.getElementById('about-section');
+                        if (aboutSection) {
+                            aboutSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}>ABOUT</a>
+                    <a href="#competitions" className="hover:text-blue-700 transition-colors" onClick={e => {
+                        e.preventDefault();
+                        const competitionsSection = document.getElementById('competitions-section');
+                        if (competitionsSection) {
+                            competitionsSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}>COMPETITIONS</a>
+                    <a href="#support" className="hover:text-blue-700 transition-colors" onClick={e => {
+                        e.preventDefault();
+                        const supportSection = document.getElementById('support-section');
+                        if (supportSection) {
+                            supportSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}>SUPPORT US</a>
+                    <a href="#team" className="hover:text-blue-700 transition-colors" onClick={e => {
+                        e.preventDefault();
+                        const teamSection = document.getElementById('team-section');
+                        if (teamSection) {
+                            teamSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}>TEAM</a>
+                    <a href="#contact" className="hover:text-blue-700 transition-colors" onClick={e => {
+                        e.preventDefault();
+                        const contactSection = document.getElementById('contact-section');
+                        if (contactSection) {
+                            contactSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}>CONTACT</a>
                     <a href="#shop" className="hover:text-blue-700 transition-colors">SHOP</a>
                 </nav>
                 <div className="flex items-center space-x-4">
@@ -66,11 +99,11 @@ const Navigation: React.FC = () => {
                 style={{ display: isMenuOpen ? 'block' : 'none' }}
             >
                 <nav className="flex flex-col p-4 space-y-4 text-lg text-gray-800">
-                    <Link to="/" className="hover:text-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>HOME</Link>
+                    <a href="#home" className="hover:text-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>HOME</a>
                     <a href="#about" className="hover:text-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>ABOUT</a>
                     <a href="#competitions" className="hover:text-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>COMPETITIONS</a>
                     <a href="#support" className="hover:text-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>SUPPORT US</a>
-                    <Link to="/team" className="hover:text-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>TEAM</Link>
+                    <a href="#team" className="hover:text-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>TEAM</a>
                     <a href="#contact" className="hover:text-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>CONTACT</a>
                     <a href="#shop" className="hover:text-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>SHOP</a>
                 </nav>

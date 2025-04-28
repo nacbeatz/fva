@@ -57,15 +57,23 @@ const HeroSection: React.FC = () => {
                             <span className="text-[#EE7A3F] md:inline block">BETTER</span>
                             <span className="text-[#EE7A3F] md:inline block md:ml-4">TOGETHER</span>
                         </h2>
-                        <p className="text-gray-600 text-lg">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
+                        <p className="text-xl text-[#0d46d7] font-medium">Empowering the next generation of champions</p>
+                        <div className="flex flex-col md:flex-row md:items-center gap-2">
+                            <span className="inline-block bg-[#EE7A3F] text-white rounded-full px-4 py-1 text-sm font-semibold">200+ Young Athletes</span>
+                            <span className="inline-block bg-[#0d46d7] text-white rounded-full px-4 py-1 text-sm font-semibold">10+ Competitions</span>
+                        </div>
                         <motion.button
                             className="bg-[#0d46d7] text-white px-8 py-3 rounded-md text-lg font-medium mt-6"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={() => {
+                                const supportSection = document.getElementById('support-section');
+                                if (supportSection) {
+                                    supportSection.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }}
                         >
-                            READ MORE
+                            Join Us
                         </motion.button>
                     </div>
 

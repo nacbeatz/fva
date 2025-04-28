@@ -4,8 +4,14 @@ import myImage from './assets/img01.png';
 import myImage1 from './assets/img002.png';
 import logo from './assets/logo.png';
 import Team from './components/Team';
+import GallerySection from './components/GallerySection';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HeroSection from './components/HeroSection';
+import AboutSection from './components/AboutSection';
+import CompetitionsSection from './components/CompetitionsSection';
+import SupportSection from './components/SupportSection';
+import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
 
 interface FVALogoProps {
   width?: string | number;
@@ -47,8 +53,19 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HeroSection />} />
-        <Route path="/team" element={<Team />} />
+        <Route path="/" element={
+          <>
+            <HeroSection />
+            <AboutSection />
+            <CompetitionsSection />
+            <SupportSection />
+            <div id="team-section">
+              <Team />
+            </div>
+            <ContactSection />
+            <Footer />
+          </>
+        } />
       </Routes>
     </Router>
   );
