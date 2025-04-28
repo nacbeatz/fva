@@ -18,10 +18,10 @@ const Navigation: React.FC = () => {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/80 backdrop-blur-sm'}`}>
+            <header className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/80 backdrop-blur-sm'}`}>
                 <div className="flex items-center">
                     <Link to="/">
-                        <img src={logo} alt="FVA Logo" className="w-16 h-16 transition-all duration-300" style={{ cursor: 'pointer' }} />
+                        <img src={logo} alt="FVA Logo" className="w-14 h-14 transition-all duration-300" style={{ cursor: 'pointer' }} />
                     </Link>
                 </div>
                 <nav className="hidden md:flex text-xl space-x-8 text-gray-800 font-medium">
@@ -71,7 +71,7 @@ const Navigation: React.FC = () => {
                         className="md:hidden p-2"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
-                        <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-10 h-10 text-[#0d46d7]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
@@ -92,7 +92,7 @@ const Navigation: React.FC = () => {
             </header>
 
             <motion.div
-                className="fixed top-24 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm md:hidden"
+                className="fixed top-[70px] left-0 right-0 bg-white/95 z-1000 backdrop-blur-sm md:hidden"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -20 }}
                 transition={{ duration: 0.3 }}

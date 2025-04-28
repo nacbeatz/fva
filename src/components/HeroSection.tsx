@@ -47,21 +47,21 @@ const HeroSection: React.FC = () => {
     return (
         <div className="relative w-full overflow-hidden bg-[#F3EDED] min-h-screen">
             <Navigation />
-            <div className="container mx-auto px-6 pt-32 md:px-4 md:pt-32">
-                <div className="flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-8 items-start md:items-center min-h-[60vh] md:min-h-[80vh]">
-                    <div className="relative z-10 space-y-4 md:space-y-6 lg:ml-56">
+            <div className="container h-screen flex items-end mx-auto px-6 pt-32 md:px-4 md:pt-32">
+                <div className="flex justify-end relative md:grid z-999 md:grid-cols-2 gap-4 md:gap-8 items-start md:items-center min-h-[60vh] md:min-h-[80vh]">
+                    <div className="relative z-10 space-y-2 md:space-y-6 lg:ml-56">
                         <div className="mt-2 md:mt-0" ref={logoRef}>
-                            <FVALogo width="180px" height="90px" className="md:w-[200px] md:h-[100px]" />
+                            <FVALogo width="90px" height="45px" className="md:w-[200px] md:h-[100px]" />
                         </div>
-                        <h2 className="text-7xl font-light leading-tight">
+                        <h2 className="text-4xl md:text-7xl font-light leading-tight">
                             <span className="text-[#EE7A3F] md:inline block">BETTER</span>
                             <span className="text-[#EE7A3F] md:inline block md:ml-4">TOGETHER</span>
                         </h2>
-                        <p className="text-xl text-[#0d46d7] font-medium">Empowering the next generation of champions</p>
-                       
-                       
+                        <p className="text-sm text-[#999999]">Empowering<br />the next generation of champions</p>
+
+
                         <motion.button
-                            className="bg-[#0d46d7] text-white px-8 py-3 rounded-md text-lg font-medium mt-6"
+                            className="bg-[#0d46d7] text-white px-5 py-1 md:px-8 md:py-3 rounded-lg text-lg font-medium mt-6"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => {
@@ -74,8 +74,7 @@ const HeroSection: React.FC = () => {
                             Join Us
                         </motion.button>
                     </div>
-
-                    <div className="relative md:order-last w-full">
+                    <div className="relative hidden md:block md:order-last w-full">
                         <motion.div
                             className="relative"
                             initial={{ opacity: 0 }}
@@ -109,6 +108,34 @@ const HeroSection: React.FC = () => {
                         </motion.div>
                     </div>
                 </div>
+                <div className=' absolute bottom-0 top-[70px] right-[-100px] w-full h-full'>
+                    <div className="relative md:hidden md:order-last w-full">
+                        <motion.div
+                            className="relative"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <div className="absolute inset-0">
+                                <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-[#0d46d7] rounded-full opacity-40"></div>
+                                <div className="absolute bottom-1/3 left-1/4 w-12 h-12 bg-[#0d46d7] rounded-full opacity-20"></div>
+                                <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-[#0d46d7] rounded-full opacity-30"></div>
+                            </div>
+
+                            <div className="flex flex-col md:flex-row items-center md:items-end justify-center md:justify-end gap-4 relative">
+                                <motion.img
+                                    src={myImage}
+                                    alt="Athlete skating"
+                                    className="h-auto object-contain relative z-10"
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.3, duration: 0.8 }}
+                                />
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
