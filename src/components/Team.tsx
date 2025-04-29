@@ -10,67 +10,62 @@ interface TeamMember {
 }
 
 const teamMembers: TeamMember[] = [
+ 
     {
-        name: 'Anna Royo',
-        role: 'ARTISTIC & FREESTYLE ATHLETE',
-        country: 'SPAIN',
-        image: '/team/anna-royo.jpg',
-        bio: 'Anna is a passionate skater with 10+ years of experience in artistic and freestyle skating.'
+        name: 'Linda Kanku Bantumbila',
+        role: 'Senior Ladies’ Category - Champion',
+        country: 'Congo',
+        image: '/team/carla-pasquinelli.jpg', // Placeholder image
+        bio: 'Champion in DRC and a fierce competitor in the senior ladies’ category. A skater with energy and determination to make Africa proud.'
     },
     {
-        name: 'Ben Brillante',
-        role: 'FREESTYLE ATHLETE & FILMMAKER',
-        country: 'FRANCE',
-        image: '/team/ben-brillante.jpg',
-        bio: 'Ben combines his love for skating and filmmaking to inspire the next generation.'
+        name: 'Tabitha Mumbi Mwangi',
+        role: 'Senior Ladies’ Category - Skater & Cyclist',
+        country: 'Kenya',
+        image: '/team/chihab-chaher.jpg', // Placeholder image
+        bio: 'A dedicated skater and cyclist with a passion for the sports and a strong work ethic. Known for her commitment to improving and inspiring young athletes.'
     },
     {
-        name: 'Cameron Talbott',
-        role: 'STREET ATHLETE',
-        country: 'UNITED STATES',
-        image: '/team/eddie-chung.jpg',
-        bio: 'Cameron is known for his creative street skating and dedication to the sport.'
+        name: 'Clémence Bushishi Banyere',
+        role: 'Senior Ladies’ Category - Rising Star',
+        country: 'Congo',
+        image: '/team/daniel-ilabaca.jpg', // Placeholder image
+        bio: 'An active participant in the FVA Inline Speed Skating training camp, achieving top results. A rising star in the sport.'
     },
     {
-        name: 'Carla Pasquinelli',
-        role: 'STREET ATHLETE',
-        country: 'FRANCE',
-        image: '/team/carla-pasquinelli.jpg',
-        bio: 'Carla brings energy and style to every competition.'
+        name: 'Geofrey Muthiani Ssendegeyo',
+        role: 'Senior Men’s Category - International Coach',
+        country: 'Kenya',
+        image: '/team/danny-aldridge.jpg', // Placeholder image
+        bio: 'A passionate skater and international coach dedicated to developing inline speed skating in Africa. A great international coach for children and youth.'
     },
     {
-        name: 'Chihab Chaher',
-        role: 'FREESTYLE ATHLETE',
-        country: 'FRANCE',
-        image: '/team/daniel-ilabaca.jpg',
-        bio: 'Chihab is a freestyle specialist with a passion for teaching.'
+        name: 'Labu Mikibi Hordy',
+        role: 'Senior Men’s Category - Short Track Specialist',
+        country: 'Congo',
+        image: '/team/eddie-chung.jpg', // Placeholder image
+        bio: 'Specialist in short tracks and sprints, crowned champion in DRC. A dynamic competitor with a unique skill set.'
     },
     {
-        name: 'Daniel Ilabaca',
-        role: 'FREESTYLE ATHLETE',
-        country: 'UNITED KINGDOM',
-        image: '/team/daniel-ilabaca.jpg',
-        bio: 'Daniel is a world traveler and freestyle champion.'
+        name: 'Ibrahima Pape Ndiaye',
+        role: 'Senior Men’s Category - Champion',
+        country: 'Senegal',
+        image: '/team/anna-royo.jpg', // Placeholder image
+        bio: 'Champion of Senegal and a professional hardworking athlete striving for the highest level of success.'
     },
     {
-        name: 'Danny Aldridge',
-        role: 'URBAN ATHLETE & VIDEO HOST',
-        country: 'UNITED KINGDOM',
-        image: '/team/danny-aldridge.jpg',
-        bio: 'Danny hosts skating events and is a mentor to many young athletes.'
-    },
-    {
-        name: 'Eddie Chung',
-        role: 'FREESTYLE',
-        country: 'UNITED STATES',
-        image: '/team/eddie-chung.jpg',
-        bio: 'Eddie is a freestyle skater with a flair for performance.'
+        name: 'Bonheur Ishimwe',
+        role: 'Senior Men’s Category - Emerging Talent',
+        country: 'Rwanda',
+        image: '/team/ben-brillante.jpg', // Placeholder image
+        bio: 'Emerging talent and current Rwanda GMT champion. Represents the future of African inline speed skating.'
     }
 ];
 
 const Team: React.FC = () => {
     const [showAll, setShowAll] = useState(false);
     const displayedMembers = showAll ? teamMembers : teamMembers.slice(0, 3);
+
     return (
         <div className="bg-[#f7f4f4] py-16">
             <Navigation />
@@ -90,7 +85,7 @@ const Team: React.FC = () => {
                                 />
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
-                                <p className="text-[#0d46d7] text-sm font-medium mb-2">{member.country}</p>
+                                <p className="text-[#ffffff] bg-[#EE7A3F] p-1 rounded-sm w-14 text-sm font-medium mb-2">{member.country}</p>
                                 <h3 className="text-white text-xl font-bold mb-1">{member.name}</h3>
                                 <p className="text-white/80 text-sm mb-1">{member.role}</p>
                                 <p className="text-white/70 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">{member.bio}</p>
@@ -111,4 +106,4 @@ const Team: React.FC = () => {
     );
 };
 
-export default Team; 
+export default Team;

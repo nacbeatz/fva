@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SupportSection: React.FC = () => {
-
     const partners = [
         {
             name: "Rise",
@@ -10,17 +9,17 @@ const SupportSection: React.FC = () => {
         },
         {
             name: "Rise",
-            logo: "src/assets/paterners/rise.png",
+            logo: "/paterners/rise.png",
             alt: "Rise"
         },
         {
             name: "Rise",
-            logo: "src/assets/paterners/rise.png",
+            logo: "/paterners/rise.png",
             alt: "Rise"
         },
         {
             name: "Rise",
-            logo: "src/assets/paterners/rise.png",
+            logo: "/paterners/rise.png",
             alt: "Rise"
         }
     ];
@@ -39,7 +38,8 @@ const SupportSection: React.FC = () => {
                     </div>
                 </div>
                 <div className="container mx-auto px-6 md:px-4 text-center mt-24">
-                    <div className="flex justify-center gap-28 flex-wrap">
+                    {/* Grid layout for partners */}
+                    <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                         {partners.map((partner, index) => (
                             <div key={index} className="flex flex-col items-center">
                                 <img
