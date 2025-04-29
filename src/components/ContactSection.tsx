@@ -14,7 +14,7 @@ const ContactSection: React.FC = () => {
     };
 
     return (
-        <section id="contact-section" className="bg-[#F3EDED] py-16">
+        <section id="contact-section" className="bg-[#f7f4f4] py-16">
             <div className="container mx-auto px-6 md:px-4 text-center max-w-4xl">
                 <h2 className="text-4xl font-semibold mb-4 text-[#0d46d7]">Contact Us</h2>
                 <p className="text-lg text-gray-700 mb-6">

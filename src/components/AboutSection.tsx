@@ -4,7 +4,7 @@ import aboutImg from '../assets/img01.png';
 const AboutSection: React.FC = () => {
     const [showMore, setShowMore] = useState(false);
     return (
-        <section id="about-section" className="bg-white py-16">
+        <section id="about-section" className="bg-[#f7f4f4] py-16 ">
             <div className="container mx-auto px-6 md:px-4 text-center max-w-3xl">
                 <h2 className="text-4xl font-semibold mb-4 text-[#0d46d7]">About FVA</h2>
                 <img src={aboutImg} alt="About FVA" className="mx-auto mb-6 w-40 h-40 object-contain rounded-full shadow-md" />

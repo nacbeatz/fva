@@ -72,7 +72,7 @@ const Team: React.FC = () => {
     const [showAll, setShowAll] = useState(false);
     const displayedMembers = showAll ? teamMembers : teamMembers.slice(0, 3);
     return (
-        <div className="bg-[#F3EDED] py-16">
+        <div className="bg-[#f7f4f4] py-16">
             <Navigation />
             <div className="container mx-auto px-4">
                 <h2 className="text-[#0d46d7] text-4xl font-bold mb-8 text-center">Meet Our Team</h2>

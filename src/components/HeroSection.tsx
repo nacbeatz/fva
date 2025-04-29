@@ -45,7 +45,7 @@ const HeroSection: React.FC = () => {
     const logoRef = useRef<HTMLDivElement>(null);
 
     return (
-        <div className="relative w-full overflow-hidden bg-[#F3EDED] min-h-screen">
+        <div className="relative w-full overflow-hidden bg-[#f7f4f4] min-h-screen shadow-[0_1px_10px_rgba(0,0,0,0.1)]">
             <Navigation />
             <div className="container h-screen flex items-end mx-auto px-6 pt-32 md:px-4 md:pt-32">
                 <div className="flex justify-end relative md:grid z-999 md:grid-cols-2 gap-4 md:gap-8 items-start md:items-center min-h-[60vh] md:min-h-[80vh]">
