@@ -5,7 +5,7 @@ const SupportSection: React.FC = () => {
     const partners = [
         {
             name: "Rise",
-            logo: "src/assets/paterners/rise.png",
+            logo: "/paterners/rise.png",
             alt: "Rise"
         },
         {
