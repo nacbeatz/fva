@@ -45,7 +45,7 @@ const HeroSection: React.FC = () => {
     const logoRef = useRef<HTMLDivElement>(null);
 
     return (
-        <div className="relative w-full overflow-hidden bg-[#f7f4f4] min-h-screen shadow-[0_1px_10px_rgba(0,0,0,0.1)]">
+        <div className="relative w-full overflow-hidden bg-[#ffffff] min-h-screen shadow-[0_1px_10px_rgba(0,0,0,0.1)] pt-20">
             <Navigation />
             <div className="container h-screen flex items-end mx-auto px-6 pt-32 md:px-4 md:pt-32">
                 <div className="flex justify-end relative md:grid z-999 md:grid-cols-2 gap-4 md:gap-8 items-start md:items-center min-h-[60vh] md:min-h-[80vh]">
@@ -53,12 +53,24 @@ const HeroSection: React.FC = () => {
                         <div className="mt-2 md:mt-0" ref={logoRef}>
                             <FVALogo width="90px" height="45px" className="md:w-[200px] md:h-[100px]" />
                         </div>
-                        <h2 className="text-4xl md:text-7xl font-light leading-tight">
-                            <span className="text-[#EE7A3F] md:inline block">BETTER</span>
-                            <span className="text-[#EE7A3F] md:inline block md:ml-4">TOGETHER</span>
-                        </h2>
-                        <p className="text-sm text-[#999999]">Empowering<br />the next generation of champions</p>
 
+                        <motion.h1
+                            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight"
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5, duration: 0.8 }}
+                        >
+                            <span className="text-[#EE7A3F] block">BETTER</span>
+                            <span className="text-[#EE7A3F] block">TOGETHER</span>
+                        </motion.h1>
+                        <motion.p
+                            className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.7, duration: 0.6 }}
+                        >
+                            Empowering the next generation of African champions through inline speed skating excellence
+                        </motion.p>
 
                         <motion.button
                             className="bg-[#0d46d7] text-white px-5 py-1 md:px-8 md:py-3 rounded-lg text-lg font-medium mt-6"
@@ -141,4 +153,4 @@ const HeroSection: React.FC = () => {
     );
 };
 
-export default HeroSection; 
+export default HeroSection;
