@@ -65,7 +65,7 @@ const Navigation = () => {
         <>
             {/* Main Navigation */}
             <motion.header
-                className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500 ${isScrolled
+                className={`fixed top-0 left-0 right-0 w-full z-[1000] transition-all duration-500 ${isScrolled
                     ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100"
                     : "bg-white/80 backdrop-blur-sm"
                     }`}
