@@ -129,7 +129,7 @@ const Navigation = () => {
                         <div className="hidden lg:flex items-center space-x-4">
                             {/* Social Links */}
                             <div className="flex items-center space-x-3">
-                                {socialLinks.slice(0, 2).map((social, idx) => (
+                                {socialLinks.slice(0, 2).map((social) => (
                                     <motion.a
                                         key={social.name}
                                         href={social.href}
@@ -251,7 +251,7 @@ const Navigation = () => {
                                 >
                                     <p className="text-sm font-medium text-gray-500 mb-4">Follow Us</p>
                                     <div className="flex items-center space-x-4">
-                                        {socialLinks.map((social, idx) => (
+                                        {socialLinks.map((social) => (
                                             <motion.a
                                                 key={social.name}
                                                 href={social.href}
