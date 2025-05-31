@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import Navigation from './Navigation';
-
 import { motion, AnimatePresence } from "framer-motion"
 import { Users, Trophy, Star, X, ChevronRight } from "lucide-react"
+import { useState } from "react"
 
 interface TeamMember {
     name: string
@@ -16,7 +14,6 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
     {
-
         name: "Linda Kanku Bantumbila",
         role: "Senior Ladies' Category - Champion",
         country: "Congo",
@@ -225,7 +222,7 @@ const Team = () => {
 
                                             {/* Achievements */}
                                             <div className="flex flex-wrap gap-1 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                {member.achievements?.slice(0, 2).map((achievement, i) => (
+                                                {member.achievements?.slice(0, 2).map((achievement: string, i: number) => (
                                                     <span
                                                         key={i}
                                                         className="bg-[#EE7A3F]/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full"
@@ -323,7 +320,7 @@ const Team = () => {
                                     <>
                                         <h3 className="text-xl font-bold text-gray-800 mb-4">Achievements</h3>
                                         <div className="flex flex-wrap gap-2 mb-6">
-                                            {selectedPlayer.achievements.map((achievement, i) => (
+                                            {selectedPlayer.achievements.map((achievement: string, i: number) => (
                                                 <span
                                                     key={i}
                                                     className="bg-gradient-to-r from-[#0d46d7]/10 to-[#EE7A3F]/10 text-gray-700 px-3 py-1.5 rounded-full text-sm font-medium"

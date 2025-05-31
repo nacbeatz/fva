@@ -1,5 +1,6 @@
+"use client"
+
 import React from 'react';
-import { useState } from "react"
 import { Calendar, MapPin, Trophy, Clock } from "lucide-react"
 import { motion } from "framer-motion"
 
@@ -66,12 +67,6 @@ const statusConfig: Record<EventStatus, { colors: string; icon: React.ReactNode;
         icon: <Trophy className="w-3 h-3" />,
         label: "Completed",
     },
-};
-
-const statusColors: Record<EventStatus, string> = {
-    'Upcoming': 'bg-green-100 text-green-700',
-    'Ongoing': 'bg-yellow-100 text-yellow-700',
-    'Completed': 'bg-gray-200 text-gray-600'
 };
 
 const CompetitionsSection: React.FC = () => {

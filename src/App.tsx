@@ -7,8 +7,6 @@ import SupportSection from './components/SupportSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
-import { motion } from 'framer-motion';
-
 export default function App() {
   return (
     <Router>

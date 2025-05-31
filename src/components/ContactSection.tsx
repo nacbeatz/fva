@@ -1,4 +1,3 @@
-
 import type React from "react"
 
 import { useState } from "react"
@@ -8,8 +7,6 @@ import {
     Phone,
     MapPin,
     Send,
-    User,
-    MessageSquare,
     CheckCircle,
     ArrowRight,
     Github,

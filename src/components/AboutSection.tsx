@@ -1,9 +1,7 @@
-
 "use client"
 
 import type React from "react"
 import { useState } from "react"
-import { ChevronDown, ChevronUp } from "lucide-react"
 import aboutImg from "../assets/img01.png"
 import { motion } from "framer-motion"
 
