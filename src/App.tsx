@@ -6,6 +6,7 @@ import CompetitionsSection from './components/CompetitionsSection';
 import SupportSection from './components/SupportSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+
 import { motion } from 'framer-motion';
 
 export default function App() {
@@ -59,5 +60,25 @@ export default function App() {
         </Routes>
       </Router>
     </>
-  );
-}
+
+export default function App() {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <HeroSection />
+              <AboutSection />
+              <CompetitionsSection />
+              <SupportSection />
+              <div id="team-section">
+                <Team />
+              </div>
+              <ContactSection />
+              <Footer />
+            </>
+          } />
+        </Routes>
+      </Router>
+    );
+  }
