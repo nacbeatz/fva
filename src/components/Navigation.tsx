@@ -100,29 +100,32 @@ const Navigation = () => {
 
                         {/* Desktop Navigation */}
                         <nav className="hidden lg:flex items-center space-x-8">
-                            {navigationItems.map((item, idx) => (
-                                <motion.button
-                                    key={item.name}
-                                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 ${activeSection === item.id ? "text-[#0d46d7]" : "text-gray-700 hover:text-[#0d46d7]"
-                                        }`}
-                                    onClick={() => scrollToSection(item.id)}
-                                    whileHover={{ y: -2 }}
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: idx * 0.1, duration: 0.5 }}
-                                >
-                                    {item.name}
-                                    {activeSection === item.id && (
-                                        <motion.div
-                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0d46d7] to-[#EE7A3F]"
-                                            layoutId="activeTab"
-                                            initial={{ scaleX: 0 }}
-                                            animate={{ scaleX: 1 }}
-                                            transition={{ duration: 0.3 }}
-                                        />
-                                    )}
-                                </motion.button>
-                            ))}
+                            {navigationItems.map((item, idx) => {
+                                const delay = idx * 0.1;
+                                return (
+                                    <motion.button
+                                        key={item.name}
+                                        className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 ${activeSection === item.id ? "text-[#0d46d7]" : "text-gray-700 hover:text-[#0d46d7]"
+                                            }`}
+                                        onClick={() => scrollToSection(item.id)}
+                                        whileHover={{ y: -2 }}
+                                        initial={{ opacity: 0, y: -20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay, duration: 0.5 }}
+                                    >
+                                        {item.name}
+                                        {activeSection === item.id && (
+                                            <motion.div
+                                                className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0d46d7] to-[#EE7A3F]"
+                                                layoutId="activeTab"
+                                                initial={{ scaleX: 0 }}
+                                                animate={{ scaleX: 1 }}
+                                                transition={{ duration: 0.3 }}
+                                            />
+                                        )}
+                                    </motion.button>
+                                )
+                            })}
                         </nav>
 
                         {/* Desktop Social Links & CTA */}
@@ -213,33 +216,36 @@ const Navigation = () => {
                             <div className="p-6">
                                 {/* Mobile Navigation Links */}
                                 <nav className="space-y-4">
-                                    {navigationItems.map((item, idx) => (
-                                        <motion.button
-                                            key={item.name}
-                                            className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ${activeSection === item.id
-                                                ? "bg-gradient-to-r from-[#0d46d7]/10 to-[#EE7A3F]/10 text-[#0d46d7] border border-[#0d46d7]/20"
-                                                : "text-gray-700 hover:bg-gray-50"
-                                                }`}
-                                            onClick={() => scrollToSection(item.id)}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: idx * 0.05, duration: 0.3 }}
-                                            whileHover={{ x: 5 }}
-                                            whileTap={{ scale: 0.98 }}
-                                        >
-                                            <div className="flex items-center justify-between">
-                                                {item.name}
-                                                {activeSection === item.id && (
-                                                    <motion.div
-                                                        className="w-2 h-2 bg-[#0d46d7] rounded-full"
-                                                        initial={{ scale: 0 }}
-                                                        animate={{ scale: 1 }}
-                                                        transition={{ duration: 0.2 }}
-                                                    />
-                                                )}
-                                            </div>
-                                        </motion.button>
-                                    ))}
+                                    {navigationItems.map((item, idx) => {
+                                        const delay = idx * 0.05;
+                                        return (
+                                            <motion.button
+                                                key={item.name}
+                                                className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ${activeSection === item.id
+                                                    ? "bg-gradient-to-r from-[#0d46d7]/10 to-[#EE7A3F]/10 text-[#0d46d7] border border-[#0d46d7]/20"
+                                                    : "text-gray-700 hover:bg-gray-50"
+                                                    }`}
+                                                onClick={() => scrollToSection(item.id)}
+                                                initial={{ opacity: 0, x: -20 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay, duration: 0.3 }}
+                                                whileHover={{ x: 5 }}
+                                                whileTap={{ scale: 0.98 }}
+                                            >
+                                                <div className="flex items-center justify-between">
+                                                    {item.name}
+                                                    {activeSection === item.id && (
+                                                        <motion.div
+                                                            className="w-2 h-2 bg-[#0d46d7] rounded-full"
+                                                            initial={{ scale: 0 }}
+                                                            animate={{ scale: 1 }}
+                                                            transition={{ duration: 0.2 }}
+                                                        />
+                                                    )}
+                                                </div>
+                                            </motion.button>
+                                        )
+                                    })}
                                 </nav>
 
                                 {/* Mobile Social Links */}
