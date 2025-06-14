@@ -14,7 +14,7 @@ const FVALogo: React.FC<FVALogoProps> = ({
     className = ''
 }) => {
     return (
-        <div className={`inline-block ${className}`} style={{ width, height }}>
+        <div className={`inline-block mt-24 ${className}`} style={{ width, height }}>
             <svg
                 viewBox="0 0 429.24 214.79"
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,20 +100,12 @@ const HeroSection: React.FC = () => {
 
                             <div className="flex flex-col items-center md:flex-row md:items-end justify-center md:justify-end gap-4 relative">
                                 <motion.img
-                                    src="/team/DSC_0028.jpg"
+                                    src="/team/Hero.jpg"
                                     alt="Athlete skating"
-                                    className="w-1/2 sm:w-2/3 h-auto object-contain relative z-10 ml-auto"
+                                    className="w-full h-auto object-contain relative z-10 mr-[-72px]"
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 1, opacity: 1 }}
                                     transition={{ delay: 0.3, duration: 0.8 }}
-                                />
-                                <motion.img
-                                    src="/team/DSC_0012.jpg"
-                                    alt="Athlete skating"
-                                    className="hidden md:block w-1/2 h-auto object-contain relative z-20"
-                                    initial={{ y: -20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    transition={{ delay: 0.6, duration: 0.8 }}
                                 />
                             </div>
                         </motion.div>
