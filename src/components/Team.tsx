@@ -17,7 +17,7 @@ const teamMembers: TeamMember[] = [
         name: "Linda Kanku Bantumbila",
         role: "Senior Ladies' Category - Champion",
         country: "Congo",
-        image: "/team/carla-pasquinelli.jpg",
+        image: "/team/DSC_0028.jpg",
         bio: "Champion in DRC and a fierce competitor in the senior ladies' category. A skater with energy and determination to make Africa proud.",
         achievements: ["DRC Champion", "Regional Competitor"],
         category: "senior-ladies",
@@ -26,7 +26,7 @@ const teamMembers: TeamMember[] = [
         name: "Tabitha Mumbi Mwangi",
         role: "Senior Ladies' Category - Skater & Cyclist",
         country: "Kenya",
-        image: "/team/chihab-chaher.jpg",
+        image: "/team/DSC_0019.jpg",
         bio: "A dedicated skater and cyclist with a passion for the sports and a strong work ethic. Known for her commitment to improving and inspiring young athletes.",
         achievements: ["Multi-Sport Athlete", "Youth Mentor"],
         category: "senior-ladies",
@@ -35,7 +35,7 @@ const teamMembers: TeamMember[] = [
         name: "Clémence Bushishi Banyere",
         role: "Senior Ladies' Category - Rising Star",
         country: "Congo",
-        image: "/team/daniel-ilabaca.jpg",
+        image: "/team/DSC_0025.jpg",
         bio: "An active participant in the FVA Inline Speed Skating training camp, achieving top results. A rising star in the sport.",
         achievements: ["Training Camp Top Performer", "Rising Star"],
         category: "senior-ladies",
@@ -44,7 +44,7 @@ const teamMembers: TeamMember[] = [
         name: "Geofrey Muthiani Ssendegeyo",
         role: "Senior Men's Category - International Coach",
         country: "Kenya",
-        image: "/team/danny-aldridge.jpg",
+        image: "/team/DSC_0012.jpg",
         bio: "A passionate skater and international coach dedicated to developing inline speed skating in Africa. A great international coach for children and youth.",
         achievements: ["International Coach", "Youth Development Expert"],
         category: "senior-men",
@@ -53,7 +53,7 @@ const teamMembers: TeamMember[] = [
         name: "Labu Mikibi Hordy",
         role: "Senior Men's Category - Short Track Specialist",
         country: "Congo",
-        image: "/team/eddie-chung.jpg",
+        image: "/team/DSC_0032.jpg",
         bio: "Specialist in short tracks and sprints, crowned champion in DRC. A dynamic competitor with a unique skill set.",
         achievements: ["DRC Champion", "Sprint Specialist"],
         category: "senior-men",
@@ -62,7 +62,7 @@ const teamMembers: TeamMember[] = [
         name: "Ibrahima Pape Ndiaye",
         role: "Senior Men's Category - Champion",
         country: "Senegal",
-        image: "/team/anna-royo.jpg",
+        image: "/team/DSC_0034.jpg",
         bio: "Champion of Senegal and a professional hardworking athlete striving for the highest level of success.",
         achievements: ["Senegal Champion", "Professional Athlete"],
         category: "senior-men",
@@ -71,7 +71,7 @@ const teamMembers: TeamMember[] = [
         name: "Bonheur Ishimwe",
         role: "Senior Men's Category - Emerging Talent",
         country: "Rwanda",
-        image: "/team/ben-brillante.jpg",
+        image: "/team/DSC_0043.jpg",
         bio: "Emerging talent and current Rwanda GMT champion. Represents the future of African inline speed skating.",
         achievements: ["Rwanda GMT Champion", "Emerging Talent"],
         category: "senior-men",
@@ -186,11 +186,11 @@ const Team = () => {
                             >
                                 <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 group-hover:shadow-2xl transition-all duration-500">
                                     {/* Image Section */}
-                                    <div className="relative h-80 overflow-hidden">
+                                    <div className="relative h-96 overflow-hidden">
                                         <img
                                             src={member.image || "/placeholder.svg"}
                                             alt={member.name}
-                                            className="object-cover transition-all duration-700 group-hover:scale-110 w-full h-full"
+                                            className="object-cover object-[25%_35%] transition-all duration-700 group-hover:scale-110 w-full h-full"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 

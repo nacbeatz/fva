@@ -4,11 +4,6 @@ import React from 'react';
 import { Calendar, MapPin, Trophy, Clock } from "lucide-react"
 import { motion } from "framer-motion"
 
-import img01 from '../assets/img01.png';
-import img002 from '../assets/img002.png';
-import img2 from '../assets/img2.png';
-import img1 from '../assets/img1.png';
-
 type EventStatus = "Upcoming" | "Ongoing" | "Completed"
 
 const events = [
@@ -17,7 +12,7 @@ const events = [
         date: "April 20, 2024",
         location: "Kigali Arena",
         link: "#",
-        image: img01,
+        image: "/team/DSC_0028.jpg",
         status: "Upcoming" as EventStatus,
         description: "Kick off the season with our annual championship featuring top young skaters from across the country.",
         featured: true,
@@ -27,7 +22,7 @@ const events = [
         date: "May 15, 2024",
         location: "Rubavu Stadium",
         link: "#",
-        image: img002,
+        image: "/team/DSC_0019.jpg",
         status: "Upcoming" as EventStatus,
         description: "A thrilling speed competition for youth athletes to test their limits and race for the cup.",
     },
@@ -36,7 +31,7 @@ const events = [
         date: "June 10, 2024",
         location: "Huye Sports Complex",
         link: "#",
-        image: img2,
+        image: "/team/DSC_0025.jpg",
         status: "Upcoming" as EventStatus,
         description: "Join us for a day of action-packed roller derby with teams from all regions.",
     },
@@ -45,7 +40,7 @@ const events = [
         date: "February 10, 2024",
         location: "Musanze Arena",
         link: "#",
-        image: img1,
+        image: "/team/DSC_0012.jpg",
         status: "Completed" as EventStatus,
         description: "Our annual winter event brought together top talent for a day of fun and fierce competition.",
     }

@@ -2,7 +2,6 @@
 
 import type React from "react"
 import { useState } from "react"
-import aboutImg from "../assets/img01.png"
 import { motion } from "framer-motion"
 
 const AboutSection: React.FC = () => {
@@ -35,7 +34,7 @@ const AboutSection: React.FC = () => {
                             {/* Main image */}
                             <div className="relative w-72 h-72 overflow-hidden rounded-lg shadow-lg border-2 border-white">
                                 <img
-                                    src={aboutImg}
+                                    src="/team/DSC_0032.jpg"
                                     alt="About FVA"
                                     className="object-cover w-full h-full transition-transform duration-700 hover:scale-105"
                                 />
