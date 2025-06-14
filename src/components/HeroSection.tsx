@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import myImage from '../assets/img01.png';
-import myImage1 from '../assets/img002.png';
 import Navigation from './Navigation';
 
 interface FVALogoProps {
@@ -87,7 +85,7 @@ const HeroSection: React.FC = () => {
                         </motion.button>
                     </div>
 
-                    <div className="relative hidden md:block md:order-last w-full">
+                    <div className="relative md:block md:order-last w-full">
                         <motion.div
                             className="relative"
                             initial={{ opacity: 0 }}
@@ -100,17 +98,17 @@ const HeroSection: React.FC = () => {
                                 <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-[#0d46d7] rounded-full opacity-30"></div>
                             </div>
 
-                            <div className="flex flex-col md:flex-row items-center md:items-end justify-center md:justify-end gap-4 relative">
+                            <div className="flex flex-col items-center md:flex-row md:items-end justify-center md:justify-end gap-4 relative">
                                 <motion.img
-                                    src={myImage}
+                                    src="/team/DSC_0028.jpg"
                                     alt="Athlete skating"
-                                    className="w-3/4 md:w-1/2 h-auto object-contain relative z-10"
+                                    className="w-1/2 sm:w-2/3 h-auto object-contain relative z-10 ml-auto"
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 1, opacity: 1 }}
                                     transition={{ delay: 0.3, duration: 0.8 }}
                                 />
                                 <motion.img
-                                    src={myImage1}
+                                    src="/team/DSC_0012.jpg"
                                     alt="Athlete skating"
                                     className="hidden md:block w-1/2 h-auto object-contain relative z-20"
                                     initial={{ y: -20, opacity: 0 }}
