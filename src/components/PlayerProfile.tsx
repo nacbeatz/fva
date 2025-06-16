@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface TeamMember {
     name: string;
@@ -41,14 +43,14 @@ const PlayerProfile: React.FC<PlayerProfileProps> = ({ player, onClose }) => {
                 <div className="relative flex flex-col h-full">
                     {/* Header with close button */}
                     <div className="absolute top-0 right-0 p-2 sm:p-4 z-20">
-                        <button
+                        <motion.button
                             onClick={onClose}
-                            className="bg-white text-gray-800 hover:text-gray-950 rounded-full p-1.5 sm:p-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+                            className="bg-white text-gray-800 hover:text-gray-950 rounded-full p-1.5 sm:p-2 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+                            whileHover={{ scale: 1.1, rotate: 90 }}
+                            whileTap={{ scale: 0.9 }}
                         >
-                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
+                            <FontAwesomeIcon icon={["fas", "xmark"]} className="w-5 h-5 sm:w-6 sm:h-6" />
+                        </motion.button>
                     </div>
 
                     {/* Hero Image Section */}
@@ -61,7 +63,7 @@ const PlayerProfile: React.FC<PlayerProfileProps> = ({ player, onClose }) => {
                         />
                         <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6">
                             <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-                                <span className="bg-[#EE7A3F] text-white px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-lg">
+                                <span className="bg-[#FFD000] text-white px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-lg">
                                     {player.country}
                                 </span>
                                 <span className="bg-[#0d46d7] text-white px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-lg">
@@ -90,15 +92,15 @@ const PlayerProfile: React.FC<PlayerProfileProps> = ({ player, onClose }) => {
                                 </h3>
                                 <ul className="space-y-2 sm:space-y-3">
                                     <li className="flex items-start">
-                                        <span className="text-[#EE7A3F] mr-2 text-sm sm:text-base">•</span>
+                                        <span className="text-[#FFD000] mr-2 text-sm sm:text-base">•</span>
                                         <span className="text-gray-600 text-sm sm:text-base">Champion in {player.country}</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-[#EE7A3F] mr-2 text-sm sm:text-base">•</span>
+                                        <span className="text-[#FFD000] mr-2 text-sm sm:text-base">•</span>
                                         <span className="text-gray-600 text-sm sm:text-base">Active competitor in international events</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-[#EE7A3F] mr-2 text-sm sm:text-base">•</span>
+                                        <span className="text-[#FFD000] mr-2 text-sm sm:text-base">•</span>
                                         <span className="text-gray-600 text-sm sm:text-base">Dedicated to promoting the sport</span>
                                     </li>
                                 </ul>
@@ -113,19 +115,32 @@ const PlayerProfile: React.FC<PlayerProfileProps> = ({ player, onClose }) => {
                                 </h3>
                                 <ul className="space-y-2 sm:space-y-3">
                                     <li className="flex items-start">
-                                        <span className="text-[#EE7A3F] mr-2 text-sm sm:text-base">•</span>
+                                        <span className="text-[#FFD000] mr-2 text-sm sm:text-base">•</span>
                                         <span className="text-gray-600 text-sm sm:text-base">Speed Skating</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-[#EE7A3F] mr-2 text-sm sm:text-base">•</span>
+                                        <span className="text-[#FFD000] mr-2 text-sm sm:text-base">•</span>
                                         <span className="text-gray-600 text-sm sm:text-base">Technical Skills</span>
                                     </li>
                                     <li className="flex items-start">
-                                        <span className="text-[#EE7A3F] mr-2 text-sm sm:text-base">•</span>
+                                        <span className="text-[#FFD000] mr-2 text-sm sm:text-base">•</span>
                                         <span className="text-gray-600 text-sm sm:text-base">Team Leadership</span>
                                     </li>
                                 </ul>
                             </div>
+                        </div>
+
+                        <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                            <button
+                                className="flex-1 bg-[#0d46d7] text-white py-3 px-6 rounded-xl font-semibold text-lg shadow-md hover:bg-[#1e5bff] transition-colors duration-300 cursor-pointer"
+                            >
+                                Follow Athlete
+                            </button>
+                            <button
+                                className="flex-1 bg-gray-100 text-gray-800 py-3 px-6 rounded-xl font-semibold text-lg shadow-md hover:bg-gray-200 transition-colors duration-300 cursor-pointer"
+                            >
+                                Share Profile
+                            </button>
                         </div>
                     </div>
                 </div>

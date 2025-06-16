@@ -10,8 +10,8 @@ const SupportSection: React.FC = () => {
                 </p>
                 <div className="mb-6">
                     <div className="flex justify-center gap-4 flex-wrap">
-                        <button className="bg-[#0d46d7] text-white px-6 py-2 rounded font-semibold hover:bg-[#EE7A3F] transition-colors">Donate</button>
-                        <button className="bg-[#EE7A3F] text-white px-6 py-2 rounded font-semibold hover:bg-[#0d46d7] transition-colors">Volunteer</button>
+                        <button className="bg-[#0d46d7] text-white px-6 py-2 rounded font-semibold hover:bg-[#FFD000] transition-colors">Donate</button>
+                        <button className="bg-[#FFD000] text-white px-6 py-2 rounded font-semibold hover:bg-[#0d46d7] transition-colors">Volunteer</button>
                     </div>
                 </div>
             </div>

@@ -1,119 +1,191 @@
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
-import Navigation from './Navigation';
+"use client"
 
-interface FVALogoProps {
-    width?: string | number;
-    height?: string | number;
-    className?: string;
-}
-
-const FVALogo: React.FC<FVALogoProps> = ({
-    width = '200px',
-    height = '100px',
-    className = ''
-}) => {
-    return (
-        <div className={`inline-block mt-24 ${className}`} style={{ width, height }}>
-            <svg
-                viewBox="0 0 429.24 214.79"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-full h-full"
-            >
-                <path
-                    d="M188.33,205.21L127.29,18.19c-2.93-8.98,3.76-18.19,13.2-18.19h.64c6.06,0,11.41,3.92,13.24,9.7l30.39,96.1c9.24,29,17.21,55.13,22.94,80.3h.64c6.06-24.86,14.98-51.94,24.54-79.99l33.12-96.73c1.92-5.62,7.2-9.39,13.14-9.39h0c9.6,0,16.31,9.52,13.08,18.56l-66.87,187.01c-1.98,5.52-7.21,9.21-13.08,9.21h-10.74c-6.01,0-11.34-3.86-13.2-9.58Z"
-                    fill="#0d46d7"
-                />
-                <path
-                    d="M337.74,0h10.74c5.87,0,11.1,3.69,13.08,9.21l66.87,187.01c3.23,9.04-3.47,18.56-13.08,18.56h0c-5.94,0-11.22-3.77-13.14-9.39l-33.12-96.73c-9.56-28.04-18.48-55.13-24.54-79.99h-.64c-5.74,25.17-13.7,51.31-22.94,80.3l-30.39,96.1c-1.83,5.77-7.18,9.7-13.24,9.7h-.64c-9.44,0-16.13-9.22-13.2-18.19L324.54,9.58c1.86-5.71,7.19-9.58,13.2-9.58Z"
-                    fill="#0d46d7"
-                />
-                <path
-                    d="M27.73,94.65V23.26h76.32c6.42,0,11.63-5.21,11.63-11.63h0c0-6.42-5.21-11.63-11.63-11.63H11.63C5.21,0,0,5.21,0,11.63v191.52c0,6.42,5.21,11.63,11.63,11.63h4.46c6.42,0,11.63-5.21,11.63-11.63v-108.51Z"
-                    fill="#0d46d7"
-                />
-                <circle cx="65.64" cy="99.52" r="14.45" fill="#0d46d7" />
-                <circle cx="346.02" cy="128.42" r="14.45" fill="#0d46d7" />
-            </svg>
-        </div>
-    );
-};
+import type React from "react"
+import { useRef, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import Navigation from "./Navigation"
+import FVALogo from "./FVALogo"
 
 const HeroSection: React.FC = () => {
-    const logoRef = useRef<HTMLDivElement>(null);
+    const logoRef = useRef<HTMLDivElement>(null)
+    const [isExpanded, setIsExpanded] = useState(false)
 
     return (
-        <div className="relative w-full overflow-hidden bg-[#ffffff] min-h-screen shadow-[0_1px_10px_rgba(0,0,0,0.1)] pt-20">
+        <div className="relative w-full overflow-hidden bg-[#1e40af] min-h-screen">
             <Navigation />
-            <div className="container h-screen flex items-end mx-auto px-6 pt-32 md:px-4 md:pt-32">
-                <div className="flex justify-end relative md:grid z-999 md:grid-cols-2 gap-4 md:gap-8 items-start md:items-center min-h-[60vh] md:min-h-[80vh]">
-                    <div className="relative z-10 space-y-2 md:space-y-6 lg:ml-56">
-                        <div className="mt-2 md:mt-0" ref={logoRef}>
-                            <FVALogo width="90px" height="45px" className="md:w-[200px] md:h-[100px]" />
-                        </div>
 
-                        <motion.h1
-                            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight"
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                {/* Large decorative circles */}
+                <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl"></div>
+                <div className="absolute top-1/3 -left-32 w-96 h-96 bg-blue-300/15 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl"></div>
+
+                {/* Small floating circles */}
+                <motion.div
+                    className="absolute top-1/4 right-1/3 w-4 h-4 bg-white/30 rounded-full"
+                    animate={{
+                        y: [0, -20, 0],
+                        opacity: [0.3, 0.6, 0.3],
+                    }}
+                    transition={{
+                        duration: 4,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                    }}
+                />
+                <motion.div
+                    className="absolute top-1/2 right-1/4 w-6 h-6 bg-white/20 rounded-full"
+                    animate={{
+                        y: [0, 15, 0],
+                        opacity: [0.2, 0.5, 0.2],
+                    }}
+                    transition={{
+                        duration: 5,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                        delay: 1,
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-1/3 right-1/2 w-3 h-3 bg-white/25 rounded-full"
+                    animate={{
+                        y: [0, -10, 0],
+                        opacity: [0.25, 0.4, 0.25],
+                    }}
+                    transition={{
+                        duration: 3,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                        delay: 2,
+                    }}
+                />
+                {/* New animated circles */}
+                <motion.div
+                    className="absolute top-1/5 left-1/4 w-5 h-5 bg-yellow-300/30 rounded-full"
+                    animate={{
+                        x: [0, 20, 0],
+                        opacity: [0.4, 0.7, 0.4],
+                    }}
+                    transition={{
+                        duration: 4.5,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                        delay: 0.5,
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-1/4 left-1/5 w-7 h-7 bg-pink-300/35 rounded-full"
+                    animate={{
+                        y: [0, -25, 0],
+                        opacity: [0.35, 0.6, 0.35],
+                    }}
+                    transition={{
+                        duration: 6,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                        delay: 1.5,
+                    }}
+                />
+            </div>
+
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
+                    {/* Content Section */}
+                    <div className="relative z-10 space-y-6 lg:space-y-8 lg:ml-24">
+                        {/* FVA Logo/Text */}
+                        <motion.div
+                            className="space-y-2 mt-24"
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5, duration: 0.8 }}
+                            transition={{ duration: 0.8 }}
                         >
-                            <span className="text-[#EE7A3F] block">BETTER</span>
-                            <span className="text-[#EE7A3F] block">TOGETHER</span>
-                        </motion.h1>
-                        <motion.p
-                            className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+                            <FVALogo width="120px" height="60px" className="md:w-[200px] md:h-[100px]" />
+                        </motion.div>
+
+                        {/* Better Together */}
+                        <motion.h2
+                            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-wide"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3, duration: 0.8 }}
+                        >
+                            BETTER TOGETHER
+                        </motion.h2>
+
+                        {/* Description */}
+                        <div className="space-y-4">
+                            <motion.p
+                                className="text-lg sm:text-xl text-white max-w-2xl leading-relaxed"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5, duration: 0.6 }}
+                            >
+                                Empowering athletes to reach their full potential through professional management, strategic partnerships, and comprehensive support in their sporting journey.
+                            </motion.p>
+
+                            <AnimatePresence>
+                                {isExpanded && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                        className="overflow-hidden"
+                                    >
+                                        <p className="text-lg sm:text-xl text-white max-w-2xl leading-relaxed">
+                                            Our agency specializes in athlete representation, career development, and brand building. We work closely with our athletes to create opportunities that align with their goals and values, ensuring long-term success both in their sport and beyond.
+                                        </p>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        {/* CTA Button */}
+                        <motion.button
+                            className="bg-[#FFD000] text-[#1e40af] px-8 py-4 rounded-full text-lg font-semibold mt-8 hover:bg-[#ffd000]/90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7, duration: 0.6 }}
+                            onClick={() => setIsExpanded(!isExpanded)}
                         >
-                            Empowering the next generation of African champions through inline speed skating excellence
-                        </motion.p>
-
-                        <motion.button
-                            className="bg-[#0d46d7] text-white px-5 py-1 md:px-8 md:py-3 rounded-lg text-lg font-medium mt-6"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => {
-                                const supportSection = document.getElementById('support-section');
-                                if (supportSection) {
-                                    supportSection.scrollIntoView({ behavior: 'smooth' });
-                                }
-                            }}
-                        >
-                            Join Us
+                            {isExpanded ? "READ LESS" : "READ MORE"}
                         </motion.button>
                     </div>
 
-                    <div className="relative md:block md:order-last w-full">
+                    {/* Image Section */}
+                    <div className="relative lg:block">
                         <motion.div
-                            className="relative"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.8 }}
+                            className="relative h-80 sm:h-96 md:h-[500px] lg:h-[700px] xl:h-[800px]"
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.4, duration: 0.8 }}
                         >
-                            <div className="absolute inset-0">
-                                <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-[#0d46d7] rounded-full opacity-40"></div>
-                                <div className="absolute bottom-1/3 left-1/4 w-12 h-12 bg-[#0d46d7] rounded-full opacity-20"></div>
-                                <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-[#0d46d7] rounded-full opacity-30"></div>
-                            </div>
-
-                            <div className="flex flex-col items-center md:flex-row md:items-end justify-center md:justify-end gap-4 relative">
+                            {/* Athlete silhouette/image */}
+                            <div className="absolute inset-0 flex items-center justify-center lg:justify-end ml-44">
                                 <motion.img
-                                    src="/team/Hero.jpg"
+                                    src="/team/v2_hero.png"
                                     alt="Athlete skating"
-                                    className="w-full h-auto object-contain relative z-10 mr-[-72px]"
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 1, opacity: 1 }}
-                                    transition={{ delay: 0.3, duration: 0.8 }}
+                                    className="h-full w-full object-cover object-center scale-120 lg:scale-125 opacity-90"
+                                    initial={{ opacity: 0, scale: 1.05 }}
+                                    animate={{ opacity: 0.9, scale: 1.1 }}
+                                    transition={{ delay: 0.6, duration: 0.8 }}
                                 />
                             </div>
+
+
+
+                            {/* Additional decorative elements */}
+                            <div className="absolute top-1/4 right-1/4 w-6 h-6 bg-white/40 rounded-full"></div>
+                            <div className="absolute bottom-1/3 left-1/3 w-8 h-8 bg-white/30 rounded-full"></div>
                         </motion.div>
                     </div>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default HeroSection;
+export default HeroSection

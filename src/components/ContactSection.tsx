@@ -2,18 +2,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import {
-    Mail,
-    Phone,
-    MapPin,
-    Send,
-    CheckCircle,
-    ArrowRight,
-    Github,
-    Twitter,
-    Instagram,
-    Linkedin,
-} from "lucide-react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const ContactSection = () => {
     const [form, setForm] = useState({ name: "", email: "", message: "" })
@@ -34,7 +23,7 @@ const ContactSection = () => {
     }
 
     return (
-        <section className="relative py-20 overflow-hidden">
+        <section className="relative py-20 overflow-hidden scroll-mt-20" id="contact-section">
             {/* Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-orange-50"></div>
             <div className="absolute inset-0 bg-[url('/placeholder.svg?height=100&width=100')] bg-repeat opacity-5"></div>
@@ -76,13 +65,13 @@ const ContactSection = () => {
                         viewport={{ once: true }}
                     >
                         <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full mb-4 shadow-sm">
-                            <Mail className="w-5 h-5 text-[#EE7A3F]" />
+                            <FontAwesomeIcon icon={["fas", "envelope"]} className="w-5 h-5 text-[#FFD000]" />
                             <span className="text-sm font-medium text-gray-600">Get In Touch</span>
                         </div>
                         <h2 className="text-5xl font-bold mb-4 text-[#0d46d7] tracking-tight">
-                            Contact <span className="text-[#EE7A3F]">Us</span>
+                            Contact <span className="text-[#FFD000]">Us</span>
                         </h2>
-                        <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#EE7A3F] mx-auto mb-6"></div>
+                        <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#FFD000] mx-auto mb-6"></div>
                         <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
                             Have questions or want to get involved? Reach out to us and we'll get back to you as soon as possible!
                         </p>
@@ -115,20 +104,20 @@ const ContactSection = () => {
                                             transition={{ duration: 0.3 }}
                                         >
                                             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                                                <CheckCircle className="w-8 h-8 text-green-600" />
+                                                <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-8 h-8 text-green-600" />
                                             </div>
                                             <h4 className="text-2xl font-bold text-gray-800 mb-2">Thank You!</h4>
                                             <p className="text-gray-600 text-center mb-6">
                                                 Your message has been sent successfully. We'll get back to you soon!
                                             </p>
                                             <motion.button
-                                                className="text-[#0d46d7] font-medium flex items-center gap-2"
+                                                className="text-[#0d46d7] font-medium flex items-center gap-2 cursor-pointer"
                                                 onClick={() => setSubmitted(false)}
                                                 whileHover={{ scale: 1.05 }}
                                                 whileTap={{ scale: 0.95 }}
                                             >
                                                 Send another message
-                                                <ArrowRight className="w-4 h-4" />
+                                                <FontAwesomeIcon icon={["fas", "arrow-right"]} className="w-4 h-4" />
                                             </motion.button>
                                         </motion.div>
                                     ) : (
@@ -219,12 +208,12 @@ const ContactSection = () => {
 
                                             <motion.button
                                                 type="submit"
-                                                className="bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#EE7A3F] hover:to-[#ff8c42] text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                                                className="bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#FFD000] hover:to-[#ffd000f5] text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                                                 whileHover={{ scale: 1.02 }}
                                                 whileTap={{ scale: 0.98 }}
                                             >
                                                 Send Message
-                                                <Send className="w-5 h-5" />
+                                                <FontAwesomeIcon icon={["fas", "paper-plane"]} className="w-5 h-5" />
                                             </motion.button>
                                         </motion.form>
                                     )}
@@ -248,89 +237,108 @@ const ContactSection = () => {
                                         whileHover={{ y: -5, transition: { duration: 0.2 } }}
                                     >
                                         <div className="p-3 bg-blue-50 rounded-full text-[#0d46d7]">
-                                            <Mail className="w-6 h-6" />
+                                            <FontAwesomeIcon icon={["fas", "phone"]} className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-bold text-gray-800 mb-1">Email Us</h3>
-                                            <p className="text-gray-500 mb-2">We'll respond within 24 hours</p>
-                                            <a
-                                                href="mailto:info@futurevisionagency.com"
-                                                className="text-[#0d46d7] font-medium hover:text-[#EE7A3F] transition-colors"
-                                            >
-                                                info@futurevisionagency.com
-                                            </a>
-                                        </div>
-                                    </motion.div>
-
-                                    <motion.div
-                                        className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 flex items-start gap-4"
-                                        whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                                    >
-                                        <div className="p-3 bg-orange-50 rounded-full text-[#EE7A3F]">
-                                            <Phone className="w-6 h-6" />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-lg font-bold text-gray-800 mb-1">Call Us</h3>
-                                            <p className="text-gray-500 mb-2">Mon-Fri from 9am to 5pm</p>
+                                            <h5 className="text-lg font-semibold text-gray-800 mb-1">Phone</h5>
+                                            <p className="text-gray-600">Have a question or need direct assistance?</p>
                                             <a
                                                 href="tel:+250788123456"
-                                                className="text-[#0d46d7] font-medium hover:text-[#EE7A3F] transition-colors"
+                                                className="text-[#0d46d7] hover:text-[#EE7A3F] font-medium transition-colors flex items-center gap-1 mt-2 cursor-pointer"
                                             >
                                                 +250 788 123 456
+                                                <FontAwesomeIcon icon={["fas", "arrow-right"]} className="w-3 h-3" />
                                             </a>
                                         </div>
                                     </motion.div>
-
                                     <motion.div
                                         className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 flex items-start gap-4"
                                         whileHover={{ y: -5, transition: { duration: 0.2 } }}
                                     >
                                         <div className="p-3 bg-blue-50 rounded-full text-[#0d46d7]">
-                                            <MapPin className="w-6 h-6" />
+                                            <FontAwesomeIcon icon={["fas", "envelope"]} className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-bold text-gray-800 mb-1">Visit Us</h3>
-                                            <p className="text-gray-500 mb-2">Come say hello at our office</p>
-                                            <address className="text-[#0d46d7] font-medium not-italic">
-                                                Kigali Heights, KG 7 Ave, Kigali, Rwanda
-                                            </address>
+                                            <h5 className="text-lg font-semibold text-gray-800 mb-1">Email</h5>
+                                            <p className="text-gray-600">Prefer to write us? Send us an email.</p>
+                                            <a
+                                                href="mailto:info@futurevisionagency.com"
+                                                className="text-[#0d46d7] hover:text-[#EE7A3F] font-medium transition-colors flex items-center gap-1 mt-2 cursor-pointer"
+                                            >
+                                                info@futurevisionagency.com
+                                                <FontAwesomeIcon icon={["fas", "arrow-right"]} className="w-3 h-3" />
+                                            </a>
+                                        </div>
+                                    </motion.div>
+                                    <motion.div
+                                        className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 flex items-start gap-4"
+                                        whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                                    >
+                                        <div className="p-3 bg-blue-50 rounded-full text-[#0d46d7]">
+                                            <FontAwesomeIcon icon={["fas", "map-marker-alt"]} className="w-6 h-6" />
+                                        </div>
+                                        <div>
+                                            <h5 className="text-lg font-semibold text-gray-800 mb-1">Our Location</h5>
+                                            <p className="text-gray-600">Visit us at our office during business hours.</p>
+                                            <a
+                                                href="#"
+                                                className="text-[#0d46d7] hover:text-[#EE7A3F] font-medium transition-colors flex items-center gap-1 mt-2 cursor-pointer"
+                                            >
+                                                Kigali Heights, KG 7 Ave, Kigali
+                                                <FontAwesomeIcon icon={["fas", "arrow-right"]} className="w-3 h-3" />
+                                            </a>
                                         </div>
                                     </motion.div>
                                 </div>
 
-                                {/* Map */}
-                                <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 h-[250px] relative">
-                                    <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                                        <div className="text-center">
-                                            <MapPin className="w-8 h-8 text-[#0d46d7] mx-auto mb-2" />
-                                            <p className="text-gray-600">Interactive map would be displayed here</p>
-                                        </div>
+                                {/* Social Icons */}
+                                <motion.div
+                                    className="mt-12 text-center"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.4 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <h4 className="text-2xl font-bold text-gray-800 mb-6">Connect With Us</h4>
+                                    <div className="flex justify-center space-x-6">
+                                        <motion.a
+                                            href="#"
+                                            className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                                            whileHover={{ y: -5, scale: 1.1 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            aria-label="Twitter"
+                                        >
+                                            <FontAwesomeIcon icon={["fab", "x-twitter"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
+                                        </motion.a>
+                                        <motion.a
+                                            href="#"
+                                            className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                                            whileHover={{ y: -5, scale: 1.1 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            aria-label="Instagram"
+                                        >
+                                            <FontAwesomeIcon icon={["fab", "instagram"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
+                                        </motion.a>
+                                        <motion.a
+                                            href="#"
+                                            className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                                            whileHover={{ y: -5, scale: 1.1 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            aria-label="LinkedIn"
+                                        >
+                                            <FontAwesomeIcon icon={["fab", "linkedin"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
+                                        </motion.a>
+                                        <motion.a
+                                            href="#"
+                                            className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                                            whileHover={{ y: -5, scale: 1.1 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            aria-label="GitHub"
+                                        >
+                                            <FontAwesomeIcon icon={["fab", "github"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
+                                        </motion.a>
                                     </div>
-                                </div>
-
-                                {/* Social Media */}
-                                <div>
-                                    <h3 className="text-lg font-bold text-gray-800 mb-4">Connect With Us</h3>
-                                    <div className="flex gap-4">
-                                        {[
-                                            { icon: <Twitter className="w-5 h-5" />, name: "Twitter" },
-                                            { icon: <Instagram className="w-5 h-5" />, name: "Instagram" },
-                                            { icon: <Linkedin className="w-5 h-5" />, name: "LinkedIn" },
-                                            { icon: <Github className="w-5 h-5" />, name: "GitHub" },
-                                        ].map((social, idx) => (
-                                            <motion.a
-                                                key={idx}
-                                                href="#"
-                                                className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 text-gray-700 hover:text-[#0d46d7] hover:border-[#0d46d7]/30 transition-colors"
-                                                whileHover={{ y: -5, scale: 1.1 }}
-                                                whileTap={{ scale: 0.9 }}
-                                                aria-label={social.name}
-                                            >
-                                                {social.icon}
-                                            </motion.a>
-                                        ))}
-                                    </div>
-                                </div>
+                                </motion.div>
                             </div>
                         </motion.div>
                     </div>

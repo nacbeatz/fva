@@ -1,23 +1,10 @@
-
 "use client"
 
 import type React from "react"
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import {
-  ArrowUp,
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Instagram,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Youtube,
-  Heart,
-} from "lucide-react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Footer = () => {
   const [showButton, setShowButton] = useState(false)
@@ -49,11 +36,11 @@ const Footer = () => {
   ]
 
   const socialLinks = [
-    { name: "Instagram", icon: <Instagram className="w-5 h-5" />, href: "#instagram" },
-    { name: "Facebook", icon: <Facebook className="w-5 h-5" />, href: "#facebook" },
-    { name: "Twitter", icon: <Twitter className="w-5 h-5" />, href: "#twitter" },
-    { name: "LinkedIn", icon: <Linkedin className="w-5 h-5" />, href: "#linkedin" },
-    { name: "YouTube", icon: <Youtube className="w-5 h-5" />, href: "#youtube" },
+    { name: "Instagram", icon: <FontAwesomeIcon icon={["fab", "instagram"]} className="w-5 h-5" />, href: "#instagram" },
+    { name: "Facebook", icon: <FontAwesomeIcon icon={["fab", "facebook"]} className="w-5 h-5" />, href: "#facebook" },
+    { name: "Twitter", icon: <FontAwesomeIcon icon={["fab", "x-twitter"]} className="w-5 h-5" />, href: "#twitter" },
+    { name: "LinkedIn", icon: <FontAwesomeIcon icon={["fab", "linkedin"]} className="w-5 h-5" />, href: "#linkedin" },
+    { name: "YouTube", icon: <FontAwesomeIcon icon={["fab", "youtube"]} className="w-5 h-5" />, href: "#youtube" },
   ]
 
   return (
@@ -85,10 +72,7 @@ const Footer = () => {
                     fostering community, and inspiring excellence.
                   </p>
                 </div>
-                <div className="flex items-center gap-2 text-blue-100">
-                  <Heart className="w-4 h-4 text-[#EE7A3F]" />
-                  <span className="text-sm">Made with passion in Africa</span>
-                </div>
+
               </motion.div>
 
               {/* Quick Links */}
@@ -104,10 +88,10 @@ const Footer = () => {
                     <li key={idx}>
                       <motion.a
                         href={link.href}
-                        className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                        className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center gap-2 group cursor-pointer"
                         whileHover={{ x: 5 }}
                       >
-                        <span className="w-1 h-1 bg-[#EE7A3F] rounded-full group-hover:w-2 transition-all duration-300"></span>
+                        <span className="w-1 h-1 bg-[#FFD000] rounded-full group-hover:w-2 transition-all duration-300"></span>
                         {link.name}
                       </motion.a>
                     </li>
@@ -126,13 +110,13 @@ const Footer = () => {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="p-2 bg-white/10 rounded-lg">
-                      <Mail className="w-4 h-4" />
+                      <FontAwesomeIcon icon={["fas", "envelope"]} className="w-4 h-4" />
                     </div>
                     <div>
                       <p className="text-blue-100 text-sm">Email</p>
                       <a
                         href="mailto:info@futurevisionagency.com"
-                        className="text-white hover:text-[#EE7A3F] transition-colors"
+                        className="text-white hover:text-[#FFD000] transition-colors cursor-pointer"
                       >
                         info@futurevisionagency.com
                       </a>
@@ -140,18 +124,18 @@ const Footer = () => {
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="p-2 bg-white/10 rounded-lg">
-                      <Phone className="w-4 h-4" />
+                      <FontAwesomeIcon icon={["fas", "phone"]} className="w-4 h-4" />
                     </div>
                     <div>
                       <p className="text-blue-100 text-sm">Phone</p>
-                      <a href="tel:+250788123456" className="text-white hover:text-[#EE7A3F] transition-colors">
+                      <a href="tel:+250788123456" className="text-white hover:text-[#FFD000] transition-colors cursor-pointer">
                         +250 788 123 456
                       </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="p-2 bg-white/10 rounded-lg">
-                      <MapPin className="w-4 h-4" />
+                      <FontAwesomeIcon icon={["fas", "map-marker-alt"]} className="w-4 h-4" />
                     </div>
                     <div>
                       <p className="text-blue-100 text-sm">Location</p>
@@ -185,12 +169,12 @@ const Footer = () => {
                   </div>
                   <motion.button
                     type="submit"
-                    className="w-full bg-[#EE7A3F] hover:bg-[#ff8c42] text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
+                    className="w-full bg-[#FFD000] hover:bg-[#ffd000f3] text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     {subscribed ? "Subscribed!" : "Subscribe"}
-                    <Send className="w-4 h-4" />
+                    <FontAwesomeIcon icon={["fas", "paper-plane"]} className="w-4 h-4" />
                   </motion.button>
                 </form>
                 {subscribed && (
@@ -222,13 +206,13 @@ const Footer = () => {
                 </div>
 
                 {/* Social Links */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 mr-48">
                   <span className="text-blue-100 text-sm mr-2">Follow us:</span>
                   {socialLinks.map((social, idx) => (
                     <motion.a
                       key={idx}
                       href={social.href}
-                      className="p-2 bg-white/10 hover:bg-[#EE7A3F] rounded-lg text-white transition-all duration-300 group"
+                      className="p-2 bg-white/10 hover:bg-[#FFD000] rounded-lg text-white transition-all duration-300 group cursor-pointer"
                       whileHover={{ y: -3, scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       aria-label={social.name}
@@ -247,17 +231,14 @@ const Footer = () => {
       <AnimatePresence>
         {showButton && (
           <motion.button
-            className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#EE7A3F] hover:to-[#ff8c42] text-white rounded-full shadow-2xl transition-all duration-300 group"
+            className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#EE7A3F] hover:to-[#ff8c42] text-white rounded-full shadow-2xl transition-all duration-300 group cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            aria-label="Back to top"
-            initial={{ opacity: 0, scale: 0, y: 100 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0, y: 100 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.3 }}
           >
-            <ArrowUp className="w-6 h-6 group-hover:animate-bounce" />
-            <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <FontAwesomeIcon icon={["fas", "arrow-up"]} className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1" />
           </motion.button>
         )}
       </AnimatePresence>

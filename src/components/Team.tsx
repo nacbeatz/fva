@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { Users, Trophy, Star, X, ChevronRight } from "lucide-react"
 import { useState } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 interface TeamMember {
     name: string
@@ -128,13 +128,13 @@ const Team = () => {
                     viewport={{ once: true }}
                 >
                     <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full mb-4 shadow-sm">
-                        <Users className="w-5 h-5 text-[#EE7A3F]" />
+                        <FontAwesomeIcon icon={["fas", "users"]} className="w-5 h-5 text-[#FFD000]" />
                         <span className="text-sm font-medium text-gray-600">Our Athletes</span>
                     </div>
                     <h2 className="text-5xl font-bold mb-4 text-[#0d46d7] tracking-tight">
-                        Meet Our <span className="text-[#EE7A3F]">Champions</span>
+                        Meet Our <span className="text-[#FFD000]">Champions</span>
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#EE7A3F] mx-auto mb-6"></div>
+                    <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#FFD000] mx-auto mb-6"></div>
                     <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
                         Discover the talented athletes who represent the future of African inline speed skating. Each member brings
                         unique skills and dedication to our team.
@@ -150,13 +150,13 @@ const Team = () => {
                     viewport={{ once: true }}
                 >
                     {[
-                        { key: "all", label: "All Athletes", icon: <Users className="w-4 h-4" /> },
-                        { key: "senior-ladies", label: "Senior Ladies", icon: <Star className="w-4 h-4" /> },
-                        { key: "senior-men", label: "Senior Men", icon: <Trophy className="w-4 h-4" /> },
+                        { key: "all", label: "All Athletes", icon: <FontAwesomeIcon icon={["fas", "users"]} className="w-4 h-4" /> },
+                        { key: "senior-ladies", label: "Senior Ladies", icon: <FontAwesomeIcon icon={["fas", "star"]} className="w-4 h-4" /> },
+                        { key: "senior-men", label: "Senior Men", icon: <FontAwesomeIcon icon={["fas", "trophy"]} className="w-4 h-4" /> },
                     ].map((filterOption) => (
                         <motion.button
                             key={filterOption.key}
-                            className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${filter === filterOption.key
+                            className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer ${filter === filterOption.key
                                 ? "bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white shadow-lg"
                                 : "bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white shadow-md"
                                 }`}
@@ -215,7 +215,7 @@ const Team = () => {
 
                                         {/* Content Overlay */}
                                         <div className="absolute bottom-0 left-0 right-0 p-6">
-                                            <h3 className="text-white text-xl font-bold mb-2 group-hover:text-[#EE7A3F] transition-colors">
+                                            <h3 className="text-white text-xl font-bold mb-2 group-hover:text-[#FFD000] transition-colors">
                                                 {member.name}
                                             </h3>
                                             <p className="text-white/90 text-sm mb-3">{member.role}</p>
@@ -234,12 +234,12 @@ const Team = () => {
 
                                             {/* View Profile Button */}
                                             <motion.div
-                                                className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                                className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
                                                 whileHover={{ scale: 1.05 }}
                                             >
                                                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
                                                     View Profile
-                                                    <ChevronRight className="w-4 h-4" />
+                                                    <FontAwesomeIcon icon={["fas", "chevron-right"]} className="w-4 h-4" />
                                                 </div>
                                             </motion.div>
                                         </div>
@@ -248,27 +248,37 @@ const Team = () => {
                             </motion.div>
                         ))}
                     </AnimatePresence>
-                </div>
 
-                {/* Show More Button */}
-                {!showAll && filteredMembers.length > 6 && (
+                    {/* Meet All Athletes Button */}
                     <motion.div
-                        className="text-center"
+                        className="text-center mt-12 col-span-full"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
                         viewport={{ once: true }}
                     >
-                        <motion.button
-                            className="bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
-                            onClick={() => setShowAll(true)}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Meet All Athletes
-                        </motion.button>
+                        {!showAll && (
+                            <motion.button
+                                onClick={() => setShowAll(true)}
+                                className="bg-[#0d46d7] hover:bg-[#FFD000] text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                Meet All Athletes
+                            </motion.button>
+                        )}
+                        {showAll && (
+                            <motion.button
+                                onClick={() => setShowAll(false)}
+                                className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                Show Less
+                            </motion.button>
+                        )}
                     </motion.div>
-                )}
+                </div>
             </div>
 
             {/* Player Profile Modal */}
@@ -300,7 +310,7 @@ const Team = () => {
                                     className="absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors"
                                     onClick={() => setSelectedPlayer(null)}
                                 >
-                                    <X className="w-5 h-5" />
+                                    <FontAwesomeIcon icon={["fas", "times"]} className="w-5 h-5" />
                                 </button>
                                 <div className="absolute bottom-6 left-6 right-6">
                                     <div className="flex items-center gap-3 mb-3">

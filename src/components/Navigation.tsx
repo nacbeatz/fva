@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Instagram, Facebook, Twitter, Linkedin } from "lucide-react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Navigation = () => {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -13,16 +13,16 @@ const Navigation = () => {
         { name: "HOME", href: "#home", id: "home" },
         { name: "ABOUT", href: "#about-section", id: "about-section" },
         { name: "COMPETITIONS", href: "#competitions-section", id: "competitions-section" },
-        { name: "TEAM", href: "#team-section", id: "team-section" },
         { name: "SUPPORT", href: "#support-section", id: "support-section" },
+        { name: "TEAM", href: "#team-section", id: "team-section" },
         { name: "CONTACT", href: "#contact-section", id: "contact-section" },
     ]
 
     const socialLinks = [
-        { name: "Instagram", icon: <Instagram className="w-5 h-5" />, href: "#instagram" },
-        { name: "Facebook", icon: <Facebook className="w-5 h-5" />, href: "#facebook" },
-        { name: "Twitter", icon: <Twitter className="w-5 h-5" />, href: "#twitter" },
-        { name: "LinkedIn", icon: <Linkedin className="w-5 h-5" />, href: "#linkedin" },
+        { name: "Instagram", icon: <FontAwesomeIcon icon={["fab", "instagram"]} className="w-5 h-5" />, href: "#instagram" },
+        { name: "Facebook", icon: <FontAwesomeIcon icon={["fab", "facebook"]} className="w-5 h-5" />, href: "#facebook" },
+        { name: "Twitter", icon: <FontAwesomeIcon icon={["fab", "x-twitter"]} className="w-5 h-5" />, href: "#twitter" },
+        { name: "LinkedIn", icon: <FontAwesomeIcon icon={["fab", "linkedin"]} className="w-5 h-5" />, href: "#linkedin" },
     ]
 
     useEffect(() => {
@@ -103,7 +103,7 @@ const Navigation = () => {
                             {navigationItems.map((item, index) => (
                                 <motion.button
                                     key={item.name}
-                                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 ${activeSection === item.id ? "text-[#0d46d7]" : "text-gray-700 hover:text-[#0d46d7]"
+                                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${activeSection === item.id ? "text-[#0d46d7]" : "text-gray-700 hover:text-[#0d46d7]"
                                         }`}
                                     onClick={() => scrollToSection(item.id)}
                                     whileHover={{ y: -2 }}
@@ -114,7 +114,7 @@ const Navigation = () => {
                                     {item.name}
                                     {activeSection === item.id && (
                                         <motion.div
-                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0d46d7] to-[#EE7A3F]"
+                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0d46d7] to-[#FFD000]"
                                             layoutId="activeTab"
                                             initial={{ scaleX: 0 }}
                                             animate={{ scaleX: 1 }}
@@ -128,7 +128,7 @@ const Navigation = () => {
                         {/* Desktop Social Links & CTA */}
                         <div className="hidden lg:flex items-center space-x-4">
                             {/* Social Links */}
-                            <div className="flex items-center space-x-3">
+                            {/* <div className="flex items-center space-x-3">
                                 {socialLinks.slice(0, 2).map((social) => (
                                     <motion.a
                                         key={social.name}
@@ -141,11 +141,11 @@ const Navigation = () => {
                                         {social.icon}
                                     </motion.a>
                                 ))}
-                            </div>
+                            </div> */}
 
                             {/* CTA Button */}
                             <motion.button
-                                className="bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#EE7A3F] hover:to-[#ff8c42] text-white px-6 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#FFD000] hover:to-[#ff8c42] text-white px-6 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => scrollToSection("support-section")}
@@ -156,7 +156,7 @@ const Navigation = () => {
 
                         {/* Mobile Menu Button */}
                         <motion.button
-                            className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+                            className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -170,7 +170,7 @@ const Navigation = () => {
                                         exit={{ rotate: 90, opacity: 0 }}
                                         transition={{ duration: 0.2 }}
                                     >
-                                        <X className="w-6 h-6 text-[#0d46d7]" />
+                                        <FontAwesomeIcon icon={["fas", "xmark"]} className="w-6 h-6 text-[#0d46d7]" />
                                     </motion.div>
                                 ) : (
                                     <motion.div
@@ -180,7 +180,7 @@ const Navigation = () => {
                                         exit={{ rotate: -90, opacity: 0 }}
                                         transition={{ duration: 0.2 }}
                                     >
-                                        <Menu className="w-6 h-6 text-[#0d46d7]" />
+                                        <FontAwesomeIcon icon={["fas", "bars"]} className="w-6 h-6 text-[#0d46d7]" />
                                     </motion.div>
                                 )}
                             </AnimatePresence>
@@ -216,7 +216,7 @@ const Navigation = () => {
                                     {navigationItems.map((item, index) => (
                                         <motion.button
                                             key={item.name}
-                                            className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ${activeSection === item.id
+                                            className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 cursor-pointer ${activeSection === item.id
                                                 ? "bg-gradient-to-r from-[#0d46d7]/10 to-[#EE7A3F]/10 text-[#0d46d7] border border-[#0d46d7]/20"
                                                 : "text-gray-700 hover:bg-gray-50"
                                                 }`}
@@ -255,7 +255,7 @@ const Navigation = () => {
                                             <motion.a
                                                 key={social.name}
                                                 href={social.href}
-                                                className="p-3 bg-gray-50 hover:bg-[#0d46d7] hover:text-white rounded-xl transition-all duration-300"
+                                                className="p-3 bg-gray-50 hover:bg-[#0d46d7] hover:text-white rounded-xl transition-all duration-300 cursor-pointer"
                                                 whileHover={{ scale: 1.1, rotate: 5 }}
                                                 whileTap={{ scale: 0.9 }}
                                                 aria-label={social.name}
@@ -268,7 +268,7 @@ const Navigation = () => {
 
                                 {/* Mobile CTA */}
                                 <motion.button
-                                    className="w-full mt-6 bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#EE7A3F] hover:to-[#ff8c42] text-white px-6 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                                    className="w-full mt-6 bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#FFD000] hover:to-[#ff8c42] text-white px-6 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                     onClick={() => scrollToSection("support-section")}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}

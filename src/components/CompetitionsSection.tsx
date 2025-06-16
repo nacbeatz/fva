@@ -106,13 +106,13 @@ const CompetitionsSection: React.FC = () => {
                     viewport={{ once: true }}
                 >
                     <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full mb-4 shadow-sm">
-                        <Trophy className="w-5 h-5 text-[#EE7A3F]" />
+                        <Trophy className="w-5 h-5 text-[#FFD000]" />
                         <span className="text-sm font-medium text-gray-600">Competitions & Events</span>
                     </div>
                     <h2 className="text-5xl font-bold mb-4 text-[#0d46d7] tracking-tight">
-                        Upcoming <span className="text-[#EE7A3F]">Competitions</span>
+                        Upcoming <span className="text-[#FFD000]">Competitions</span>
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#EE7A3F] mx-auto mb-6"></div>
+                    <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#FFD000] mx-auto mb-6"></div>
                     <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
                         Join us for thrilling competitions that bring together athletes from all backgrounds to compete, learn, and
                         grow together.
@@ -134,7 +134,7 @@ const CompetitionsSection: React.FC = () => {
                             <div
                                 className={`
                                 relative bg-white rounded-2xl shadow-lg overflow-hidden border-2 transition-all duration-500
-                                ${event.featured ? "border-[#EE7A3F] shadow-xl" : "border-transparent hover:border-[#0d46d7]/20"}
+                                ${event.featured ? "border-[#FFD000] shadow-xl" : "border-transparent hover:border-[#0d46d7]/20"}
                                 ${event.status === "Completed" ? "opacity-75" : ""}
                                 group-hover:shadow-2xl
                                 `}
@@ -142,7 +142,7 @@ const CompetitionsSection: React.FC = () => {
                                 {/* Featured badge */}
                                 {event.featured && (
                                     <div className="absolute top-4 right-4 z-20">
-                                        <div className="bg-gradient-to-r from-[#EE7A3F] to-[#ff8c42] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                                        <div className="bg-gradient-to-r from-[#FFD000] to-[#FFD000] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                                             FEATURED
                                         </div>
                                     </div>
@@ -178,18 +178,18 @@ const CompetitionsSection: React.FC = () => {
 
                                 {/* Content Section */}
                                 <div className="p-6">
-                                    <h3 className="text-xl font-bold text-[#0d46d7] mb-3 group-hover:text-[#EE7A3F] transition-colors">
+                                    <h3 className="text-xl font-bold text-[#0d46d7] mb-3 group-hover:text-[#FFD000] transition-colors">
                                         {event.name}
                                     </h3>
 
                                     {/* Event Details */}
                                     <div className="space-y-2 mb-4">
                                         <div className="flex items-center gap-2 text-gray-600">
-                                            <Calendar className="w-4 h-4 text-[#EE7A3F]" />
+                                            <Calendar className="w-4 h-4 text-[#FFD000]" />
                                             <span className="text-sm font-medium">{event.date}</span>
                                         </div>
                                         <div className="flex items-center gap-2 text-gray-600">
-                                            <MapPin className="w-4 h-4 text-[#EE7A3F]" />
+                                            <MapPin className="w-4 h-4 text-[#FFD000]" />
                                             <span className="text-sm font-medium">{event.location}</span>
                                         </div>
                                     </div>
@@ -199,7 +199,7 @@ const CompetitionsSection: React.FC = () => {
                                     {/* Action Button */}
                                     <motion.a
                                         href={event.link}
-                                        className="inline-flex items-center gap-2 w-full justify-center bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group-hover:from-[#EE7A3F] group-hover:to-[#ff8c42]"
+                                        className="inline-flex items-center gap-2 w-full justify-center bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group-hover:from-[#FFD000] group-hover:to-[#ff8c42]"
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                     >
@@ -242,7 +242,7 @@ const CompetitionsSection: React.FC = () => {
                             Don't miss out on our upcoming events. Register now and be part of the action!
                         </p>
                         <motion.button
-                            className="bg-gradient-to-r from-[#EE7A3F] to-[#ff8c42] text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                            className="bg-gradient-to-r from-[#ffd000fc] to-[#FFD000] text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
