@@ -1,13 +1,12 @@
 "use client"
 
 import type React from "react"
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Navigation from "./Navigation"
 import FVALogo from "./FVALogo"
 
 const HeroSection: React.FC = () => {
-    const logoRef = useRef<HTMLDivElement>(null)
     const [isExpanded, setIsExpanded] = useState(false)
 
     return (
