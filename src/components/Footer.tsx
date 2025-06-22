@@ -194,9 +194,9 @@ const Footer = () => {
           {/* Bottom Section */}
           <div className="border-t border-white/10">
             <div className="container mx-auto px-6 py-8">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
                 {/* Copyright */}
-                <div className="text-center md:text-left">
+                <div className="text-center sm:text-left">
                   <p className="text-blue-100">
                     &copy; {new Date().getFullYear()} Future Vision Agency. All rights reserved.
                   </p>
@@ -206,8 +206,8 @@ const Footer = () => {
                 </div>
 
                 {/* Social Links */}
-                <div className="flex items-center gap-4 mr-48">
-                  <span className="text-blue-100 text-sm mr-2">Follow us:</span>
+                <div className="flex items-center gap-4">
+                  <span className="text-blue-100 text-sm mr-2 hidden sm:inline">Follow us:</span>
                   {socialLinks.map((social, idx) => (
                     <motion.a
                       key={idx}
@@ -231,7 +231,7 @@ const Footer = () => {
       <AnimatePresence>
         {showButton && (
           <motion.button
-            className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#EE7A3F] hover:to-[#ff8c42] text-white rounded-full shadow-2xl transition-all duration-300 group cursor-pointer"
+            className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#EE7A3F] hover:to-[#ff8c42] text-white rounded-full shadow-lg transition-all duration-300 group cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}

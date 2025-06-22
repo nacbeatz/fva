@@ -15,6 +15,7 @@ const Navigation = () => {
         { name: "COMPETITIONS", href: "#competitions-section", id: "competitions-section" },
         { name: "SUPPORT", href: "#support-section", id: "support-section" },
         { name: "TEAM", href: "#team-section", id: "team-section" },
+        { name: "PARTNERS", href: "#partners-section", id: "partners-section" },
         { name: "CONTACT", href: "#contact-section", id: "contact-section" },
     ]
 

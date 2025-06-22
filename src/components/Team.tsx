@@ -76,6 +76,24 @@ const teamMembers: TeamMember[] = [
         achievements: ["Rwanda GMT Champion", "Emerging Talent"],
         category: "senior-men",
     },
+    {
+        name: "Nsengiyumva Theogene",
+        role: "Senior Men's Category - Hope of the Nation",
+        country: "Rwanda",
+        image: "/team/NSENGIYUMVA Theogene.jpg",
+        bio: "A young and promising athlete from Rwanda, known for his dedication and passion for inline speed skating. He is considered one of the hopes for the future of the sport in the nation.",
+        achievements: ["National Competitor", "Youth Inspiration"],
+        category: "senior-men",
+    },
+    {
+        name: "Peter Kamau",
+        role: "Senior Men's Category - Determined Skater",
+        country: "Uganda",
+        image: "/team/Peter Kamau(Uganda)/IMG-20250621-WA0013.jpg",
+        bio: "A determined and resilient skater from Uganda, Peter is known for his strong work ethic and commitment to the sport. He is an inspiration to many young skaters in his country.",
+        achievements: ["National Team Member", "Community Leader"],
+        category: "senior-men",
+    },
 ]
 
 const Team = () => {
