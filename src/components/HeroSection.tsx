@@ -165,7 +165,7 @@ const HeroSection: React.FC = () => {
                             {/* Athlete silhouette/image */}
                             <div className="absolute inset-0 flex items-center justify-center lg:justify-end ml-44">
                                 <motion.img
-                                    src="/team/v2_hero.png"
+                                    src="/team/v2_hero.webp"
                                     alt="Athlete skating"
                                     className="h-full w-full object-cover object-center scale-120 lg:scale-125 opacity-90"
                                     initial={{ opacity: 0, scale: 1.05 }}
