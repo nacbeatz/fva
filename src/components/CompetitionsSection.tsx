@@ -113,7 +113,7 @@ const CompetitionsSection: React.FC = () => {
                         Upcoming <span className="text-[#FFD000]">Competitions</span>
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#FFD000] mx-auto mb-6"></div>
-                    <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed text-left">
                         Join us for thrilling competitions that bring together athletes from all backgrounds to compete, learn, and
                         grow together.
                     </p>

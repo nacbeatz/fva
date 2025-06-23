@@ -72,7 +72,7 @@ const ContactSection = () => {
                             Contact Us
                         </h2>
                         <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#FFD000] mx-auto mb-6"></div>
-                        <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed text-left">
                             Have questions or want to get involved? Reach out to us and we'll get back to you as soon as possible!
                         </p>
                     </motion.div>

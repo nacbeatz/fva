@@ -5,7 +5,7 @@ const SupportSection: React.FC = () => {
         <section id="support-section" className="bg-white py-16">
             <div className="container mx-auto px-6 md:px-4 text-center max-w-4xl">
                 <h2 className="text-4xl font-semibold mb-4 text-[#0d46d7]">Support Us</h2>
-                <p className="text-lg text-gray-700 mb-6">
+                <p className="text-lg text-gray-700 mb-6 text-left">
                     Help us empower the next generation of athletes! Your support enables us to provide training, equipment, and opportunities for youth development.
                 </p>
                 <div className="mb-6">

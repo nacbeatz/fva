@@ -155,7 +155,7 @@ const Team = () => {
                         Meet Our <span className="text-[#FFD000]">Champions</span>
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#FFD000] mx-auto mb-6"></div>
-                    <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed text-left">
                         Discover the talented athletes who represent the future of African inline speed skating. Each member brings
                         unique skills and dedication to our team.
                     </p>

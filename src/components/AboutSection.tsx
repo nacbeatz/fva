@@ -76,7 +76,7 @@ const AboutSection: React.FC = () => {
 
                     {/* Content Column with enhanced typography */}
                     <motion.div
-                        className="md:w-1/2 text-center md:text-left"
+                        className="md:w-1/2 text-left"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
@@ -88,7 +88,7 @@ const AboutSection: React.FC = () => {
                             </h2>
                             <div className="w-20 h-1 bg-[#FFD000] mb-6 mx-auto md:mx-0"></div>
 
-                            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                            <p className="text-lg text-gray-700 mb-6 leading-relaxed text-left">
                                 Future Vision Agency (FVA) is dedicated to empowering young athletes and promoting the spirit of teamwork, discipline, and excellence through competitive sports. Our mission is to nurture talent, foster community, and inspire the next generation of champions.
                                 {showMore && (
                                     <motion.span
