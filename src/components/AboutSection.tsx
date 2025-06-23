@@ -83,7 +83,7 @@ const AboutSection: React.FC = () => {
                         viewport={{ once: true }}
                     >
                         <div className="relative">
-                            <h2 className="text-4xl font-bold mb-2 text-[#0d46d7] tracking-tight">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-[#0d46d7] tracking-tight">
                                 About FVA
                             </h2>
                             <div className="w-20 h-1 bg-[#FFD000] mb-6 mx-auto md:mx-0"></div>

@@ -109,7 +109,7 @@ const CompetitionsSection: React.FC = () => {
                         <Trophy className="w-5 h-5 text-[#FFD000]" />
                         <span className="text-sm font-medium text-gray-600">Competitions & Events</span>
                     </div>
-                    <h2 className="text-5xl font-bold mb-4 text-[#0d46d7] tracking-tight">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-[#0d46d7] tracking-tight">
                         Upcoming <span className="text-[#FFD000]">Competitions</span>
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#FFD000] mx-auto mb-6"></div>

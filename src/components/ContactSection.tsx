@@ -68,8 +68,8 @@ const ContactSection = () => {
                             <FontAwesomeIcon icon={["fas", "envelope"]} className="w-5 h-5 text-[#FFD000]" />
                             <span className="text-sm font-medium text-gray-600">Get In Touch</span>
                         </div>
-                        <h2 className="text-5xl font-bold mb-4 text-[#0d46d7] tracking-tight">
-                            Contact <span className="text-[#FFD000]">Us</span>
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-[#0d46d7] tracking-tight">
+                            Contact Us
                         </h2>
                         <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#FFD000] mx-auto mb-6"></div>
                         <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">

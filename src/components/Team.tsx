@@ -151,7 +151,7 @@ const Team = () => {
                         <FontAwesomeIcon icon={["fas", "users"]} className="w-5 h-5 text-[#FFD000]" />
                         <span className="text-sm font-medium text-gray-600">Our Athletes</span>
                     </div>
-                    <h2 className="text-5xl font-bold mb-4 text-[#0d46d7] tracking-tight">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-[#0d46d7] tracking-tight">
                         Meet Our <span className="text-[#FFD000]">Champions</span>
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-[#0d46d7] to-[#FFD000] mx-auto mb-6"></div>
@@ -176,7 +176,7 @@ const Team = () => {
                     ].map((filterOption) => (
                         <motion.button
                             key={filterOption.key}
-                            className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer ${filter === filterOption.key
+                            className={`inline-flex items-center gap-2 px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base rounded-full font-medium transition-all duration-300 cursor-pointer ${filter === filterOption.key
                                 ? "bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white shadow-lg"
                                 : "bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white shadow-md"
                                 }`}
