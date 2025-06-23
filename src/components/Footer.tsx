@@ -158,7 +158,9 @@ const Footer = () => {
                 </p>
                 <form onSubmit={handleNewsletterSubmit} className="space-y-4">
                   <div className="relative">
+                    <label htmlFor="newsletter-email" className="sr-only">Email address</label>
                     <input
+                      id="newsletter-email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}

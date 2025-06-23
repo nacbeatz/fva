@@ -159,6 +159,7 @@ const Navigation = () => {
                         <motion.button
                             className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
