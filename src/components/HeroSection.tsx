@@ -88,18 +88,18 @@ const HeroSection: React.FC = () => {
                 />
             </div>
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-start pt-36 sm:pt-0">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
                     {/* Content Section */}
-                    <div className="relative z-10 space-y-6 lg:space-y-8 lg:ml-24">
+                    <div className="relative z-10 space-y-6 lg:space-y-8 lg:ml-24 px-2 sm:px-0">
                         {/* FVA Logo/Text */}
                         <motion.div
-                            className="space-y-2 mt-24"
+                            className="space-y-2 mt-2 sm:mt-24"
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <FVALogo width="120px" height="60px" className="md:w-[200px] md:h-[100px]" />
+                            <FVALogo width="90px" height="45px" className="w-[90px] h-[45px] md:w-[200px] md:h-[100px]" />
                         </motion.div>
 
                         {/* Better Together */}

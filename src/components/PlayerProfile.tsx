@@ -42,14 +42,15 @@ const PlayerProfile: React.FC<PlayerProfileProps> = ({ player, onClose }) => {
             >
                 <div className="relative flex flex-col h-full">
                     {/* Header with close button */}
-                    <div className="absolute top-0 right-0 p-2 sm:p-4 z-20">
+                    <div className="absolute top-2 right-2 sm:top-0 sm:right-0 p-3 sm:p-4 z-30">
                         <motion.button
                             onClick={onClose}
-                            className="bg-white text-gray-800 hover:text-gray-950 rounded-full p-1.5 sm:p-2 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+                            aria-label="Close profile modal"
+                            className="bg-white text-gray-800 hover:text-gray-950 rounded-full p-2 sm:p-2.5 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer border border-gray-300"
                             whileHover={{ scale: 1.1, rotate: 90 }}
                             whileTap={{ scale: 0.9 }}
                         >
-                            <FontAwesomeIcon icon={["fas", "xmark"]} className="w-5 h-5 sm:w-6 sm:h-6" />
+                            <FontAwesomeIcon icon={["fas", "xmark"]} className="w-6 h-6 sm:w-7 sm:h-7" />
                         </motion.button>
                     </div>
 

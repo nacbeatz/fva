@@ -55,8 +55,8 @@ const Footer = () => {
 
         <div className="relative z-10">
           {/* Main Footer Content */}
-          <div className="container mx-auto px-6 py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="container mx-auto px-4 sm:px-8 py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 md:gap-x-12">
               {/* Brand Section */}
               <motion.div
                 className="lg:col-span-1"
@@ -156,7 +156,7 @@ const Footer = () => {
                 <p className="text-blue-100 mb-6">
                   Subscribe to our newsletter for the latest updates on competitions, events, and athlete achievements.
                 </p>
-                <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+                <form onSubmit={handleNewsletterSubmit} className="space-y-4 mr-2 md:mr-0">
                   <div className="relative">
                     <label htmlFor="newsletter-email" className="sr-only">Email address</label>
                     <input
