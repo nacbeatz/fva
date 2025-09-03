@@ -10,6 +10,7 @@ interface TeamMember {
     bio: string
     achievements?: string[]
     category: "senior-ladies" | "senior-men"
+    instagram?: string
 }
 
 const teamMembers: TeamMember[] = [
@@ -25,11 +26,17 @@ const teamMembers: TeamMember[] = [
     },
     {
         name: "Peter Kamau",
-        role: "Senior Men's Category - Determined Skater",
-        country: "Uganda",
+        role: "Senior Men's Category - Inline Speed Skater",
+        country: "Kenya",
         image: "/team/Peter Kamau(Uganda)/003.avif",
-        bio: "A determined and resilient skater from Uganda, Peter is known for his strong work ethic and commitment to the sport. He is an inspiration to many young skaters in his country.",
-        achievements: ["National Team Member", "Community Leader"],
+        bio: "Peter Kamau is a passionate inline speed skater from Nairobi, Kenya, known for his explosive speed and relentless work ethic. As a key member of the FVA Racing Team, he is dedicated to pushing his limits and representing Africa on the global stage.",
+        achievements: [
+            "1st Place - Nairobi Inline Speed Skating Championship",
+            "Top 5 - East African Inline Speed Skating Championship",
+            "Multiple regional wins in Kenya",
+            "International competitor for Kenya"
+        ],
+        instagram: "https://www.instagram.com/kama10peter?igsh=MWV4dGZsZmtwNjl6",
         category: "senior-men",
     },
     {
@@ -109,8 +116,8 @@ const Team = () => {
     return (
         <section className="relative py-20 overflow-hidden">
             {/* Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-orange-50/30"></div>
-            <div className="absolute inset-0 bg-[url('/placeholder.svg?height=100&width=100')] bg-repeat opacity-5"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-orange-50/30 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[url('/placeholder.svg?height=100&width=100')] bg-repeat opacity-5 pointer-events-none"></div>
 
             {/* Floating decorative elements */}
             <motion.div

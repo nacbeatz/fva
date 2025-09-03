@@ -7,6 +7,7 @@ import SupportSection from './components/SupportSection';
 import PartnersSection from './components/PartnersSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import EventDetails from './components/EventDetails';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             <Footer />
           </>
         } />
+        <Route path="/events/:slug" element={<EventDetails />} />
       </Routes>
     </Router>
   );

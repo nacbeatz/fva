@@ -8,6 +8,9 @@ const Navigation = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [activeSection, setActiveSection] = useState("home")
+    const [isVisible, setIsVisible] = useState(true)
+    const [lastScrollY, setLastScrollY] = useState(0)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const navigationItems = [
         { name: "HOME", href: "#home", id: "home" },
@@ -28,7 +31,18 @@ const Navigation = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50)
+            const currentScrollY = window.scrollY
+
+            setIsScrolled(currentScrollY > 50)
+
+            // Hide/show navigation based on scroll direction
+            if (currentScrollY < lastScrollY || currentScrollY < 100) {
+                setIsVisible(true)
+            } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                setIsVisible(false)
+            }
+
+            setLastScrollY(currentScrollY)
 
             // Update active section based on scroll position
             const sections = navigationItems.map((item) => item.id)
@@ -48,6 +62,27 @@ const Navigation = () => {
 
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
+
+    // Detect when modal is open
+    useEffect(() => {
+        const detectModal = () => {
+            const modalElement = document.querySelector('[class*="fixed inset-0 z-50"]')
+            setIsModalOpen(!!modalElement)
+        }
+
+        // Check for modal on mount and set up observer
+        detectModal()
+
+        const observer = new MutationObserver(detectModal)
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class']
+        })
+
+        return () => observer.disconnect()
     }, [])
 
     const scrollToSection = (sectionId: string) => {
@@ -71,8 +106,8 @@ const Navigation = () => {
                     : "bg-white/80 backdrop-blur-sm"
                     }`}
                 initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                animate={{ y: (isVisible && !isModalOpen) ? 0 : -100 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
             >
                 <div className="container mx-auto px-6">
                     <div className="flex items-center justify-between h-20">

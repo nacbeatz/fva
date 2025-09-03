@@ -8,6 +8,9 @@ interface TeamMember {
     country: string;
     image: string;
     bio: string;
+    achievements?: string[];
+    category?: string;
+    instagram?: string;
 }
 
 interface PlayerProfileProps {
@@ -34,11 +37,19 @@ const PlayerProfile: React.FC<PlayerProfileProps> = ({ player, onClose }) => {
         };
     }, [onClose]);
 
+    useEffect(() => {
+        if (player.instagram) {
+            setTimeout(() => {
+                console.warn('If the Follow Athlete button is not clickable, check for overlays or parent elements with pointer-events or z-index issues that may block interaction.');
+            }, 1000);
+        }
+    }, [player.instagram]);
+
     return (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4 animate-fadeIn">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4 animate-fadeIn pointer-events-auto">
             <div
                 ref={modalRef}
-                className="bg-white rounded-2xl w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[85vw] lg:max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl transform transition-all animate-slideUp flex flex-col"
+                className="bg-white rounded-2xl w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-[85vw] lg:max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl transform transition-all animate-slideUp flex flex-col pointer-events-auto"
             >
                 <div className="relative flex flex-col h-full">
                     {/* Header with close button */}
@@ -74,6 +85,17 @@ const PlayerProfile: React.FC<PlayerProfileProps> = ({ player, onClose }) => {
                             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 sm:mb-2 drop-shadow-lg">
                                 {player.name}
                             </h2>
+                            {player.instagram && (
+                                <a
+                                    href={player.instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-white hover:text-[#FFD000] text-sm sm:text-base mt-1 transition-colors"
+                                >
+                                    <FontAwesomeIcon icon={["fab", "instagram"]} className="w-5 h-5" />
+                                    Instagram
+                                </a>
+                            )}
                         </div>
                     </div>
 
@@ -131,12 +153,24 @@ const PlayerProfile: React.FC<PlayerProfileProps> = ({ player, onClose }) => {
                             </div>
                         </div>
 
-                        <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                            <button
-                                className="flex-1 bg-[#0d46d7] text-white py-3 px-6 rounded-xl font-semibold text-lg shadow-md hover:bg-[#1e5bff] transition-colors duration-300 cursor-pointer"
-                            >
-                                Follow Athlete
-                            </button>
+                        <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 pointer-events-auto">
+                            {player.instagram ? (
+                                <a
+                                    href={player.instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex-1 bg-[#0d46d7] text-white py-3 px-6 rounded-xl font-semibold text-lg shadow-md hover:bg-[#1e5bff] transition-colors duration-300 cursor-pointer text-center flex items-center justify-center gap-2"
+                                >
+                                    <FontAwesomeIcon icon={["fab", "instagram"]} className="w-5 h-5" />
+                                    Follow Athlete
+                                </a>
+                            ) : (
+                                <button
+                                    className="flex-1 bg-[#0d46d7] text-white py-3 px-6 rounded-xl font-semibold text-lg shadow-md hover:bg-[#1e5bff] transition-colors duration-300 cursor-pointer"
+                                >
+                                    Follow Athlete
+                                </button>
+                            )}
                             <button
                                 className="flex-1 bg-gray-100 text-gray-800 py-3 px-6 rounded-xl font-semibold text-lg shadow-md hover:bg-gray-200 transition-colors duration-300 cursor-pointer"
                             >

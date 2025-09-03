@@ -4,47 +4,9 @@ import React from 'react';
 import { Calendar, MapPin, Trophy, Clock } from "lucide-react"
 import { motion } from "framer-motion"
 
-type EventStatus = "Upcoming" | "Ongoing" | "Completed"
+import { events, EventItem } from "../data/events";
 
-const events = [
-    {
-        name: "Spring Skating Championship",
-        date: "April 20, 2024",
-        location: "Kigali Arena",
-        link: "#",
-        image: "/team/04.avif",
-        status: "Upcoming" as EventStatus,
-        description: "Kick off the season with our annual championship featuring top young skaters from across the country.",
-        featured: true,
-    },
-    {
-        name: "Youth Speed Cup",
-        date: "May 15, 2024",
-        location: "Rubavu Stadium",
-        link: "#",
-        image: "/team/03.avif",
-        status: "Upcoming" as EventStatus,
-        description: "A thrilling speed competition for youth athletes to test their limits and race for the cup.",
-    },
-    {
-        name: "National Roller Derby",
-        date: "June 10, 2024",
-        location: "Huye Sports Complex",
-        link: "#",
-        image: "/team/02.avif",
-        status: "Upcoming" as EventStatus,
-        description: "Join us for a day of action-packed roller derby with teams from all regions.",
-    },
-    {
-        name: "Winter Classic",
-        date: "February 10, 2024",
-        location: "Musanze Arena",
-        link: "#",
-        image: "/team/01.avif",
-        status: "Completed" as EventStatus,
-        description: "Our annual winter event brought together top talent for a day of fun and fierce competition.",
-    }
-];
+type EventStatus = "Upcoming" | "Ongoing" | "Completed";
 
 const statusConfig: Record<EventStatus, { colors: string; icon: React.ReactNode; label: string }> = {
     Upcoming: {
@@ -65,6 +27,18 @@ const statusConfig: Record<EventStatus, { colors: string; icon: React.ReactNode;
 };
 
 const CompetitionsSection: React.FC = () => {
+    const [selectedEvent, setSelectedEvent] = React.useState<EventItem | null>(null);
+
+    // Lock body scroll while modal is open
+    React.useEffect(() => {
+        if (selectedEvent) {
+            const previousOverflow = document.body.style.overflow;
+            document.body.style.overflow = "hidden";
+            return () => {
+                document.body.style.overflow = previousOverflow;
+            };
+        }
+    }, [selectedEvent]);
     return (
         <section id="competitions-section" className="relative py-20 overflow-hidden">
             {/* Removed: Enhanced background */}
@@ -121,7 +95,7 @@ const CompetitionsSection: React.FC = () => {
 
                 {/* Events Grid */}
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    {events.map((event, idx) => (
+                    {events.map((event: EventItem, idx) => (
                         <motion.div
                             key={idx}
                             className={`group relative ${event.featured ? "md:col-span-2 lg:col-span-1" : ""}`}
@@ -197,28 +171,53 @@ const CompetitionsSection: React.FC = () => {
                                     <p className="text-gray-700 text-sm leading-relaxed mb-6">{event.description}</p>
 
                                     {/* Action Button */}
-                                    <motion.a
-                                        href={event.link}
-                                        className="inline-flex items-center gap-2 w-full justify-center bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group-hover:from-[#FFD000] group-hover:to-[#ff8c42]"
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                    >
-                                        {event.status === "Completed" ? "View Results" : "Learn More"}
-                                        <motion.svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="16"
-                                            height="16"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            className="transition-transform duration-300 group-hover:translate-x-1"
+                                    {event.status === "Upcoming" ? (
+                                        <motion.button
+                                            onClick={() => setSelectedEvent(event)}
+                                            className="inline-flex items-center gap-2 w-full justify-center bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group-hover:from-[#FFD000] group-hover:to-[#ff8c42]"
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
                                         >
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </motion.svg>
-                                    </motion.a>
+                                            Learn More
+                                            <motion.svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="16"
+                                                height="16"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="transition-transform duration-300 group-hover:translate-x-1"
+                                            >
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </motion.svg>
+                                        </motion.button>
+                                    ) : (
+                                        <motion.a
+                                            href={event.link}
+                                            className="inline-flex items-center gap-2 w-full justify-center bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group-hover:from-[#FFD000] group-hover:to-[#ff8c42]"
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                        >
+                                            View Results
+                                            <motion.svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="16"
+                                                height="16"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="transition-transform duration-300 group-hover:translate-x-1"
+                                            >
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </motion.svg>
+                                        </motion.a>
+                                    )}
                                 </div>
 
                                 {/* Decorative corner elements */}
@@ -250,6 +249,176 @@ const CompetitionsSection: React.FC = () => {
                         </motion.button>
                     </div>
                 </motion.div>
+
+                {/* Modal Dialog */}
+                {selectedEvent && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-pointer" onClick={() => setSelectedEvent(null)}></div>
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                            className="relative bg-white rounded-3xl shadow-2xl w-[95vw] max-w-4xl max-h-[90vh] overflow-hidden"
+                        >
+                            {/* Close Button */}
+                            <button
+                                className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-white transition-all duration-200 shadow-lg cursor-pointer"
+                                onClick={() => setSelectedEvent(null)}
+                                aria-label="Close"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+
+                            {/* Modal Content */}
+                            <div className="max-h-[90vh] overflow-y-auto">
+                                {/* Header Image */}
+                                <div className="relative h-72 overflow-hidden">
+                                    <img src={selectedEvent.image} alt={selectedEvent.name} className="w-full h-full object-cover" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                                    <div className="absolute bottom-6 left-6 right-6">
+                                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-lg">{selectedEvent.name}</h2>
+                                        <div className="flex flex-wrap gap-4 text-white/90">
+                                            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                                                <Calendar className="w-4 h-4" />
+                                                <span className="font-medium">{selectedEvent.date}</span>
+                                            </div>
+                                            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                                                <MapPin className="w-4 h-4" />
+                                                <span className="font-medium">{selectedEvent.location}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Content */}
+                                <div className="p-8 space-y-8">
+                                    {/* Description */}
+                                    <div>
+                                        <h3 className="text-xl font-semibold text-[#0d46d7] mb-3">About This Event</h3>
+                                        <p className="text-gray-700 leading-relaxed text-lg">{selectedEvent.description}</p>
+                                    </div>
+
+                                    {/* Event Details Grid */}
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        {/* Venue Information */}
+                                        {selectedEvent.venue && (
+                                            <div className="bg-gray-50 rounded-2xl p-6">
+                                                <h4 className="font-semibold text-[#0d46d7] mb-2 flex items-center gap-2">
+                                                    <MapPin className="w-5 h-5" />
+                                                    Venue
+                                                </h4>
+                                                <p className="text-gray-700">{selectedEvent.venue}</p>
+                                            </div>
+                                        )}
+
+                                        {/* Registration Information */}
+                                        {selectedEvent.registration && (
+                                            <div className="bg-blue-50 rounded-2xl p-6">
+                                                <h4 className="font-semibold text-[#0d46d7] mb-3 flex items-center gap-2">
+                                                    <Calendar className="w-5 h-5" />
+                                                    Registration
+                                                </h4>
+                                                <div className="space-y-2 text-gray-700">
+                                                    {selectedEvent.registration.deadline && (
+                                                        <div className="flex justify-between">
+                                                            <span className="font-medium">Deadline:</span>
+                                                            <span>{selectedEvent.registration.deadline}</span>
+                                                        </div>
+                                                    )}
+                                                    {selectedEvent.registration.regularFee && (
+                                                        <div className="flex justify-between">
+                                                            <span className="font-medium">Fee:</span>
+                                                            <span className="font-semibold text-[#0d46d7]">{selectedEvent.registration.regularFee}</span>
+                                                        </div>
+                                                    )}
+                                                    {selectedEvent.registration.lateFee && (
+                                                        <div className="flex justify-between">
+                                                            <span className="font-medium">Late Fee:</span>
+                                                            <span className="font-semibold text-orange-600">{selectedEvent.registration.lateFee}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Categories */}
+                                    {selectedEvent.categories && selectedEvent.categories.length > 0 && (
+                                        <div>
+                                            <h3 className="text-xl font-semibold text-[#0d46d7] mb-4 flex items-center gap-2">
+                                                <Trophy className="w-5 h-5" />
+                                                Competition Categories
+                                            </h3>
+                                            <div className="grid gap-4">
+                                                {selectedEvent.categories.map((cat, i) => (
+                                                    <div key={i} className="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition-shadow duration-200 cursor-default">
+                                                        <div className="flex flex-wrap justify-between items-start mb-3">
+                                                            <div>
+                                                                <h4 className="font-semibold text-gray-900 text-lg">
+                                                                    {cat.title}
+                                                                    {cat.distance && <span className="text-[#0d46d7] ml-2">• {cat.distance}</span>}
+                                                                </h4>
+                                                                {cat.genders && (
+                                                                    <p className="text-gray-600 mt-1">{cat.genders}</p>
+                                                                )}
+                                                                {cat.notes && (
+                                                                    <p className="text-gray-600 mt-1">{cat.notes}</p>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                        {cat.prizes && (
+                                                            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 mt-3">
+                                                                <h5 className="font-medium text-gray-900 mb-2">Prize Money</h5>
+                                                                <div className="flex flex-wrap gap-4 text-sm">
+                                                                    <div className="flex items-center gap-2">
+                                                                        <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
+                                                                        <span className="font-semibold">{cat.prizes[0]}</span>
+                                                                    </div>
+                                                                    <div className="flex items-center gap-2">
+                                                                        <div className="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs font-bold">2</div>
+                                                                        <span className="font-semibold">{cat.prizes[1]}</span>
+                                                                    </div>
+                                                                    <div className="flex items-center gap-2">
+                                                                        <div className="w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center text-white text-xs font-bold">3</div>
+                                                                        <span className="font-semibold">{cat.prizes[2]}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Awards Note */}
+                                    {selectedEvent.awardsNote && (
+                                        <div className="bg-gradient-to-r from-[#0d46d7]/5 to-[#FFD000]/5 rounded-2xl p-6 border border-[#0d46d7]/10">
+                                            <h4 className="font-semibold text-[#0d46d7] mb-2">Additional Information</h4>
+                                            <p className="text-gray-700">{selectedEvent.awardsNote}</p>
+                                        </div>
+                                    )}
+
+                                    {/* Action Button */}
+                                    <div className="flex justify-center pt-4">
+                                        <motion.button
+                                            className="bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 cursor-pointer"
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                        >
+                                            Register Now
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                            </svg>
+                                        </motion.button>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
 
             </div >
         </section >
