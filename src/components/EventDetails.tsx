@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, MapPin, ArrowLeft } from 'lucide-react';
-import { getEventBySlug } from '../data/events';
+import { useData } from '../contexts/DataContext';
 
 export default function EventDetails() {
     const { slug } = useParams();
-    const event = slug ? getEventBySlug(slug) : undefined;
+    const { events: adminEvents } = useData();
+    const [event, setEvent] = useState<any | undefined>(undefined);
+
+    useEffect(() => {
+        // Only check for the event in admin-managed events
+        const adminEvent = adminEvents.find(e => e.slug === slug);
+
+        if (adminEvent) {
+            // Convert admin event to match the structure expected by the UI
+            setEvent({
+                ...adminEvent,
+                status: adminEvent.status || "Upcoming",
+                link: adminEvent.link || "#",
+                // Add any other required fields with default values
+            });
+        } else {
+            setEvent(undefined);
+        }
+    }, [slug, adminEvents]);
 
     if (!event) {
         return (

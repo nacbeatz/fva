@@ -1,33 +1,65 @@
-# React + TypeScript + Vite
+# Future Vision Agency
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application for Future Vision Agency, showcasing events, team members, and providing an admin dashboard for content management.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Public-facing website with sections for:
+  - About the agency
+  - Team members/athletes
+  - Competitions and events
+  - Partners
+  - Contact information
 
-## Expanding the ESLint configuration
+- Admin dashboard with:
+  - Firebase authentication
+  - Team management
+  - Event management
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technical Stack
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
+- React (with TypeScript)
+- Vite
+- Framer Motion
+- Firebase (Authentication, Firestore, Storage)
+- Tailwind CSS
+- React Router
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (version 18 or later recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+3. Start the development server:
+   ```
+   npm run dev
+   ```
+
+## Authentication
+
+The application uses Firebase Authentication with email/password login for the admin dashboard.
+
+### Admin Login
+
+To access the admin dashboard, navigate to `/admin` and log in with your Firebase account credentials.
+
+## Configuration
+
+Firebase configuration is stored in `src/firebase/config.ts` and includes:
+- Authentication
+- Firestore Database
+- Storage
+
+## License
+
+This project is licensed under the MIT License.
 })
 ```
 

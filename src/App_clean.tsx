@@ -14,8 +14,6 @@ import ProtectedRoute from './components/admin/ProtectedRoute';
 import { AuthProvider } from './contexts/AuthContext';
 import { DataProvider } from './contexts/DataContext';
 
-
-
 export default function App() {
   return (
     <AuthProvider>

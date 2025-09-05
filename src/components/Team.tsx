@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useData } from "../contexts/DataContext"
 
 interface TeamMember {
+    id?: string
     name: string
     role: string
     country: string
@@ -13,7 +15,8 @@ interface TeamMember {
     instagram?: string
 }
 
-const teamMembers: TeamMember[] = [
+// Static team members as fallback (exported for initialization)
+export const teamMembers: TeamMember[] = [
 
     {
         name: "Nsengiyumva Theogene",
@@ -102,6 +105,24 @@ const teamMembers: TeamMember[] = [
         achievements: ["Rwanda GMT Champion", "Emerging Talent"],
         category: "senior-men",
     },
+    {
+        name: "Arsène GANZA",
+        role: "Senior Men's Category - Competitive Athlete",
+        country: "Rwanda",
+        image: "/team/11.avif",
+        bio: "Dedicated athlete with strong competitive spirit and commitment to excellence in inline speed skating.",
+        achievements: ["Competitive Athlete", "Team Member"],
+        category: "senior-men",
+    },
+    {
+        name: "Emmanuel NIYOBUHUNGIRO",
+        role: "Senior Men's Category - Competitive Athlete",
+        country: "Rwanda",
+        image: "/team/Emmanuel NIYOBUHUNGIRO.jpeg",
+        bio: "Skilled athlete focused on developing his inline speed skating techniques and competitive performance in professional racing.",
+        achievements: ["Competitive Athlete", "Professional Racer"],
+        category: "senior-men",
+    },
 
 ]
 
@@ -110,8 +131,28 @@ const Team = () => {
     const [selectedPlayer, setSelectedPlayer] = useState<TeamMember | null>(null)
     const [filter, setFilter] = useState<"all" | "senior-ladies" | "senior-men">("all")
 
-    const filteredMembers = teamMembers.filter((member) => filter === "all" || member.category === filter)
+    // Get team members from Firebase
+    const { teamMembers: firebaseTeamMembers, loading } = useData()
+
+    // Use Firebase data if available, otherwise fall back to static data
+    const currentTeamMembers = firebaseTeamMembers && firebaseTeamMembers.length > 0 ? firebaseTeamMembers : teamMembers
+
+    const filteredMembers = currentTeamMembers.filter((member) => filter === "all" || member.category === filter)
     const displayedMembers = showAll ? filteredMembers : filteredMembers.slice(0, 6)
+
+    // Show loading state while fetching data
+    if (loading && (!firebaseTeamMembers || firebaseTeamMembers.length === 0)) {
+        return (
+            <section className="relative py-20 overflow-hidden">
+                <div className="container mx-auto px-4">
+                    <div className="text-center">
+                        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#0d46d7]"></div>
+                        <p className="mt-4 text-gray-600">Loading team members...</p>
+                    </div>
+                </div>
+            </section>
+        )
+    }
 
     return (
         <section className="relative py-20 overflow-hidden">

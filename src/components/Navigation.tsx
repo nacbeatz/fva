@@ -149,12 +149,8 @@ const Navigation = () => {
                                 >
                                     {item.name}
                                     {activeSection === item.id && (
-                                        <motion.div
+                                        <div
                                             className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0d46d7] to-[#FFD000]"
-                                            layoutId="activeTab"
-                                            initial={{ scaleX: 0 }}
-                                            animate={{ scaleX: 1 }}
-                                            transition={{ duration: 0.3 }}
                                         />
                                     )}
                                 </motion.button>
