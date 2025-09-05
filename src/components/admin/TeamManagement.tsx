@@ -3,7 +3,7 @@ import { useData } from '../../contexts/DataContext';
 import { uploadToCloudinary } from '../../services/cloudinaryService';
 
 interface TeamMember {
-  id: string;
+  id?: string;
   name: string;
   role: string;
   country: string;
@@ -104,6 +104,9 @@ export default function TeamManagement() {
       console.log('Saving member data:', memberData);
 
       if (editingMember) {
+        if (!editingMember.id) {
+          throw new Error('Cannot update team member: missing ID');
+        }
         await updateTeamMember(editingMember.id, memberData);
       } else {
         await addTeamMember(memberData);
@@ -131,7 +134,12 @@ export default function TeamManagement() {
     setIsFormOpen(true);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id?: string) => {
+    if (!id) {
+      setFormError('Invalid team member ID');
+      return;
+    }
+    
     if (confirm('Are you sure you want to delete this team member?')) {
       try {
         setFormError(null);

@@ -87,7 +87,7 @@ export default function EventManagement() {
         } catch (uploadError: any) {
           console.error('Cloudinary upload failed:', uploadError);
           setImageUploading(false);
-          
+
           // Automatically fall back to URL or placeholder
           if (formData.image) {
             console.log('Falling back to provided URL');
@@ -96,7 +96,7 @@ export default function EventManagement() {
             console.log('Using placeholder image due to upload failure');
             imageUrl = 'https://via.placeholder.com/400x300/cc6600/ffffff?text=Upload+Failed';
           }
-          
+
           setFormError(`Image upload failed, using ${formData.image ? 'provided URL' : 'placeholder'} instead. Error: ${uploadError.message}`);
         }
       }
@@ -208,7 +208,7 @@ export default function EventManagement() {
   };
 
   const updateCategory = (index: number, field: string, value: string | [string, string, string]) => {
-    const updatedCategories = formData.categories.map((cat, i) => 
+    const updatedCategories = formData.categories.map((cat, i) =>
       i === index ? { ...cat, [field]: value } : cat
     );
     setFormData({ ...formData, categories: updatedCategories });
@@ -276,7 +276,7 @@ export default function EventManagement() {
               {/* Basic Event Info */}
               <div className="space-y-4">
                 <h4 className="font-medium text-gray-900">Basic Information</h4>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Event Name</label>
                   <input
@@ -399,7 +399,7 @@ export default function EventManagement() {
               {/* Event Image */}
               <div className="space-y-4">
                 <h4 className="font-medium text-gray-900">Event Image</h4>
-                
+
                 {/* File Upload Option */}
                 <div className="mb-4">
                   <label className="block text-sm text-gray-600 mb-2">
@@ -491,7 +491,7 @@ export default function EventManagement() {
               {/* Registration Information */}
               <div className="space-y-4">
                 <h4 className="font-medium text-gray-900">Registration (Optional)</h4>
-                
+
                 <div className="grid grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700">Deadline</label>
@@ -656,7 +656,7 @@ export default function EventManagement() {
               {/* Awards Note */}
               <div className="space-y-4">
                 <h4 className="font-medium text-gray-900">Additional Information (Optional)</h4>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Awards Note</label>
                   <textarea

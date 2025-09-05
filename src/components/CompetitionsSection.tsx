@@ -28,7 +28,7 @@ const statusConfig: Record<EventStatus, { colors: string; icon: React.ReactNode;
 
 const CompetitionsSection: React.FC = () => {
     const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
-    const { events: adminEvents, loading } = useData();
+    const { events: adminEvents } = useData();
 
     // Use only Firebase/admin events
     const displayEvents = adminEvents || [];
@@ -150,11 +150,11 @@ const CompetitionsSection: React.FC = () => {
                                         <div
                                             className={`
                                             inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm
-                                            ${statusConfig[event.status].colors}
+                                            ${statusConfig[event.status || 'Upcoming'].colors}
                                             `}
                                         >
-                                            {statusConfig[event.status].icon}
-                                            {statusConfig[event.status].label}
+                                            {statusConfig[event.status || 'Upcoming'].icon}
+                                            {statusConfig[event.status || 'Upcoming'].label}
                                         </div>
                                     </div>
                                 </div>

@@ -1,10 +1,10 @@
-import { collection, doc, getDocs, addDoc, updateDoc, deleteDoc, query, orderBy, serverTimestamp, getDoc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, addDoc, updateDoc, deleteDoc, query, orderBy, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../firebase/config';
 import { EventItem } from '../contexts/DataContext';
 
 export interface TeamMember {
-    id: string;
+    id?: string;
     name: string;
     role: string;
     country: string;
