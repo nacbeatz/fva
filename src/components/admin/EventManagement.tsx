@@ -19,6 +19,7 @@ export default function EventManagement() {
     image: '',
     completed: false,
     featured: false,
+    isFVAEvent: true, // Default to true since this is FVA admin panel
     status: 'Upcoming' as 'Upcoming' | 'Ongoing' | 'Completed',
     link: '',
     venue: '',
@@ -45,6 +46,7 @@ export default function EventManagement() {
       image: '',
       completed: false,
       featured: false,
+      isFVAEvent: true, // Default to true since this is FVA admin panel
       status: 'Upcoming' as 'Upcoming' | 'Ongoing' | 'Completed',
       link: '',
       venue: '',
@@ -107,6 +109,7 @@ export default function EventManagement() {
         image: imageUrl,
         completed: formData.completed,
         featured: formData.featured,
+        isFVAEvent: formData.isFVAEvent,
         status: formData.status,
         link: formData.link,
         venue: formData.venue,
@@ -174,6 +177,7 @@ export default function EventManagement() {
       image: event.image,
       completed: event.completed || false,
       featured: event.featured || false,
+      isFVAEvent: event.isFVAEvent ?? true, // Default to true if not set
       status: event.status || 'Upcoming',
       link: event.link || '',
       venue: event.venue || '',
@@ -359,6 +363,16 @@ export default function EventManagement() {
                   </div>
 
                   <div className="flex items-center space-x-4 pt-6">
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={formData.isFVAEvent}
+                        onChange={(e) => setFormData({ ...formData, isFVAEvent: e.target.checked })}
+                        className="rounded border-gray-300"
+                      />
+                      <span className="ml-2 text-sm text-gray-700">FVA Event (Show Register Button)</span>
+                    </label>
+
                     <label className="flex items-center">
                       <input
                         type="checkbox"

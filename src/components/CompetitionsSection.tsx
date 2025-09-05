@@ -98,11 +98,11 @@ const CompetitionsSection: React.FC = () => {
                 </motion.div>
 
                 {/* Events Grid */}
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
                     {displayEvents.map((event: EventItem, idx) => (
                         <motion.div
                             key={idx}
-                            className={`group relative ${event.featured ? "md:col-span-2 lg:col-span-1" : ""}`}
+                            className={`group relative flex ${event.featured ? "md:col-span-2 lg:col-span-1" : ""}`}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: idx * 0.1 }}
@@ -111,7 +111,7 @@ const CompetitionsSection: React.FC = () => {
                         >
                             <div
                                 className={`
-                                relative bg-white rounded-2xl shadow-lg overflow-hidden border-2 transition-all duration-500
+                                relative bg-white rounded-2xl shadow-lg overflow-hidden border-2 transition-all duration-500 w-full flex flex-col
                                 ${event.featured ? "border-[#FFD000] shadow-xl" : "border-transparent hover:border-[#0d46d7]/20"}
                                 ${event.status === "Completed" ? "opacity-75" : ""}
                                 group-hover:shadow-2xl
@@ -160,7 +160,7 @@ const CompetitionsSection: React.FC = () => {
                                 </div>
 
                                 {/* Content Section */}
-                                <div className="p-6">
+                                <div className="p-6 flex-1 flex flex-col">
                                     <h3 className="text-xl font-bold text-[#0d46d7] mb-3 group-hover:text-[#FFD000] transition-colors">
                                         {event.name}
                                     </h3>
@@ -177,56 +177,58 @@ const CompetitionsSection: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <p className="text-gray-700 text-sm leading-relaxed mb-6">{event.description}</p>
+                                    <p className="text-gray-700 text-sm leading-relaxed flex-1 mb-6">{event.description}</p>
 
                                     {/* Action Button */}
-                                    {event.status === "Upcoming" ? (
-                                        <motion.button
-                                            onClick={() => setSelectedEvent(event)}
-                                            className="inline-flex items-center gap-2 w-full justify-center bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group-hover:from-[#FFD000] group-hover:to-[#ff8c42]"
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                        >
-                                            Learn More
-                                            <motion.svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                className="transition-transform duration-300 group-hover:translate-x-1"
+                                    <div className="mt-auto">
+                                        {event.status === "Upcoming" ? (
+                                            <motion.button
+                                                onClick={() => setSelectedEvent(event)}
+                                                className="inline-flex items-center gap-2 w-full justify-center bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group-hover:from-[#FFD000] group-hover:to-[#ff8c42]"
+                                                whileHover={{ scale: 1.02 }}
+                                                whileTap={{ scale: 0.98 }}
                                             >
-                                                <polyline points="9 18 15 12 9 6"></polyline>
-                                            </motion.svg>
-                                        </motion.button>
-                                    ) : (
-                                        <motion.a
-                                            href={event.link}
-                                            className="inline-flex items-center gap-2 w-full justify-center bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group-hover:from-[#FFD000] group-hover:to-[#ff8c42]"
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                        >
-                                            View Results
-                                            <motion.svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                className="transition-transform duration-300 group-hover:translate-x-1"
+                                                Learn More
+                                                <motion.svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="transition-transform duration-300 group-hover:translate-x-1"
+                                                >
+                                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                                </motion.svg>
+                                            </motion.button>
+                                        ) : (
+                                            <motion.a
+                                                href={event.link}
+                                                className="inline-flex items-center gap-2 w-full justify-center bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group-hover:from-[#FFD000] group-hover:to-[#ff8c42]"
+                                                whileHover={{ scale: 1.02 }}
+                                                whileTap={{ scale: 0.98 }}
                                             >
-                                                <polyline points="9 18 15 12 9 6"></polyline>
-                                            </motion.svg>
-                                        </motion.a>
-                                    )}
+                                                View Results
+                                                <motion.svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="transition-transform duration-300 group-hover:translate-x-1"
+                                                >
+                                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                                </motion.svg>
+                                            </motion.a>
+                                        )}
+                                    </div>
                                 </div>
 
                                 {/* Decorative corner elements */}
@@ -460,18 +462,66 @@ const CompetitionsSection: React.FC = () => {
                                     </div>
 
                                     {/* Action Button - Fixed at bottom */}
-                                    <div className="p-6 border-t border-gray-100">
-                                        <motion.button
-                                            className="w-full bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                        >
-                                            Register Now
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                            </svg>
-                                        </motion.button>
-                                    </div>
+                                    {selectedEvent.isFVAEvent && (
+                                        <div className="p-6 border-t border-gray-100">
+                                            {selectedEvent.status === "Upcoming" ? (
+                                                <motion.button
+                                                    onClick={() => {
+                                                        // Handle registration logic here
+                                                        if (selectedEvent.link) {
+                                                            window.open(selectedEvent.link, '_blank');
+                                                        } else {
+                                                            alert('Registration will be available soon!');
+                                                        }
+                                                    }}
+                                                    className="w-full bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                                                    whileHover={{ scale: 1.02 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                >
+                                                    Register Now
+                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                    </svg>
+                                                </motion.button>
+                                            ) : selectedEvent.status === "Ongoing" ? (
+                                                <motion.button
+                                                    onClick={() => {
+                                                        if (selectedEvent.link) {
+                                                            window.open(selectedEvent.link, '_blank');
+                                                        } else {
+                                                            alert('Live updates coming soon!');
+                                                        }
+                                                    }}
+                                                    className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                                                    whileHover={{ scale: 1.02 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                >
+                                                    View Live Updates
+                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                    </svg>
+                                                </motion.button>
+                                            ) : (
+                                                <motion.button
+                                                    onClick={() => {
+                                                        if (selectedEvent.link) {
+                                                            window.open(selectedEvent.link, '_blank');
+                                                        } else {
+                                                            alert('Results coming soon!');
+                                                        }
+                                                    }}
+                                                    className="w-full bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                                                    whileHover={{ scale: 1.02 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                >
+                                                    View Results
+                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                                    </svg>
+                                                </motion.button>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>

@@ -24,6 +24,7 @@ export interface EventItem {
   status?: "Upcoming" | "Ongoing" | "Completed";
   link?: string;
   featured?: boolean;
+  isFVAEvent?: boolean; // New field to identify FVA events
   createdAt?: any;
   updatedAt?: any;
   // Additional fields for rich modal display
@@ -76,8 +77,14 @@ export function DataProvider({ children }: { children: ReactNode }) {
       const teamData = await getTeamMembers();
       const eventsData = await getEvents();
 
+      // Ensure all events have the isFVAEvent field set (default to true for existing events)
+      const eventsWithFVAField = eventsData.map(event => ({
+        ...event,
+        isFVAEvent: event.isFVAEvent !== undefined ? event.isFVAEvent : true
+      }));
+
       setTeamMembers(teamData);
-      setEvents(eventsData);
+      setEvents(eventsWithFVAField);
     } catch (err: any) {
       console.error('Error fetching data:', err);
       setError(err.message || 'Failed to load data');
