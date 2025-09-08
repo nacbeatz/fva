@@ -15,7 +15,7 @@ interface TeamMember {
 }
 
 export default function TeamManagement() {
-  const { teamMembers, addTeamMember, updateTeamMember, deleteTeamMember, loading: dataLoading, error: dataError, refreshData } = useData();
+  const { teamMembers, addTeamMember, updateTeamMember, deleteTeamMember, loading: dataLoading, error: dataError } = useData();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
