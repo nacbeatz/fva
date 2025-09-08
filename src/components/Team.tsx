@@ -129,7 +129,7 @@ export const teamMembers: TeamMember[] = [
 const Team = () => {
     const [showAll, setShowAll] = useState(false)
     const [selectedPlayer, setSelectedPlayer] = useState<TeamMember | null>(null)
-    const [filter, setFilter] = useState<"all" | "senior-ladies" | "senior-men">("all")
+    const [filter, setFilter] = useState<"all" | "senior-women" | "senior-men" | "junior-women" | "junior-men">("all")
 
     // Get team members from Firebase
     const { teamMembers: firebaseTeamMembers, loading } = useData()
@@ -232,8 +232,10 @@ const Team = () => {
                 >
                     {[
                         { key: "all", label: "All Athletes", icon: <FontAwesomeIcon icon={["fas", "users"]} className="w-4 h-4" /> },
-                        { key: "senior-ladies", label: "Senior Ladies", icon: <FontAwesomeIcon icon={["fas", "star"]} className="w-4 h-4" /> },
+                        { key: "senior-women", label: "Senior Ladies", icon: <FontAwesomeIcon icon={["fas", "star"]} className="w-4 h-4" /> },
                         { key: "senior-men", label: "Senior Men", icon: <FontAwesomeIcon icon={["fas", "trophy"]} className="w-4 h-4" /> },
+                        { key: "junior-women", label: "Junior Ladies", icon: <FontAwesomeIcon icon={["fas", "medal"]} className="w-4 h-4" /> },
+                        { key: "junior-men", label: "Junior Men", icon: <FontAwesomeIcon icon={["fas", "medal"]} className="w-4 h-4" /> },
                     ].map((filterOption) => (
                         <motion.button
                             key={filterOption.key}
