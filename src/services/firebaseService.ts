@@ -11,7 +11,7 @@ export interface TeamMember {
     image: string;
     bio: string;
     achievements?: string[];
-    category: "senior-ladies" | "senior-men";
+    category: "senior-men" | "senior-women" | "junior-men" | "junior-women";
     instagram?: string;
     createdAt?: any;
     updatedAt?: any;
@@ -29,7 +29,19 @@ export const getTeamMembers = async () => {
 };
 
 export const addTeamMember = async (member: Omit<TeamMember, 'id'>) => {
+    // Check for existing team member with the same name to prevent duplicates
     const teamRef = collection(db, 'team');
+    const existingMembers = await getDocs(teamRef);
+
+    const duplicateExists = existingMembers.docs.some(doc => {
+        const data = doc.data();
+        return data.name?.toLowerCase().trim() === member.name?.toLowerCase().trim();
+    });
+
+    if (duplicateExists) {
+        throw new Error(`Team member with name "${member.name}" already exists`);
+    }
+
     const docRef = await addDoc(teamRef, {
         ...member,
         createdAt: serverTimestamp(),
@@ -193,18 +205,32 @@ export const initializeFirestore = async (teamData: TeamMember[], eventsData: Ev
 
         if (teamSnapshot.empty && teamData.length > 0) {
             console.log('🌱 Initializing team members...');
-            // Add team members
-            for (const member of teamData) {
-                const memberWithoutId = { ...member };
-                delete (memberWithoutId as any).id;
 
-                await addDoc(collection(db, 'team'), {
-                    ...memberWithoutId,
-                    createdAt: serverTimestamp(),
-                    updatedAt: serverTimestamp()
-                });
+            // Track names to prevent duplicates during seeding
+            const addedNames = new Set<string>();
+            let addedCount = 0;
+
+            // Add team members, checking for duplicates
+            for (const member of teamData) {
+                const memberName = member.name?.toLowerCase().trim();
+
+                if (memberName && !addedNames.has(memberName)) {
+                    const memberWithoutId = { ...member };
+                    delete (memberWithoutId as any).id;
+
+                    await addDoc(collection(db, 'team'), {
+                        ...memberWithoutId,
+                        createdAt: serverTimestamp(),
+                        updatedAt: serverTimestamp()
+                    });
+
+                    addedNames.add(memberName);
+                    addedCount++;
+                } else {
+                    console.log(`⚠️ Skipping duplicate team member: ${member.name}`);
+                }
             }
-            console.log(`✅ Initialized ${teamData.length} team members`);
+            console.log(`✅ Initialized ${addedCount} team members (skipped ${teamData.length - addedCount} duplicates)`);
         } else if (!teamSnapshot.empty) {
             console.log('⏭️ Team collection already has data, skipping team initialization');
         }

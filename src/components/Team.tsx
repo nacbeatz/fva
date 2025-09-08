@@ -11,7 +11,7 @@ interface TeamMember {
     image: string
     bio: string
     achievements?: string[]
-    category: "senior-ladies" | "senior-men"
+    category: "senior-men" | "senior-women" | "junior-men" | "junior-women"
     instagram?: string
 }
 
@@ -49,7 +49,7 @@ export const teamMembers: TeamMember[] = [
         image: "/team/08.avif",
         bio: "Champion in DRC and a fierce competitor in the senior ladies' category. A skater with energy and determination to make Africa proud.",
         achievements: ["DRC Champion", "Regional Competitor"],
-        category: "senior-ladies",
+        category: "senior-women",
     },
     {
         name: "Tabitha Mumbi Mwangi",
@@ -58,7 +58,7 @@ export const teamMembers: TeamMember[] = [
         image: "/team/02.avif",
         bio: "A dedicated skater and cyclist with a passion for the sports and a strong work ethic. Known for her commitment to improving and inspiring young athletes.",
         achievements: ["Multi-Sport Athlete", "Youth Mentor"],
-        category: "senior-ladies",
+        category: "senior-women",
     },
     {
         name: "Clémence Bushishi Banyere",
@@ -67,7 +67,7 @@ export const teamMembers: TeamMember[] = [
         image: "/team/05.avif",
         bio: "An active participant in the FVA Inline Speed Skating training camp, achieving top results. A rising star in the sport.",
         achievements: ["Training Camp Top Performer", "Rising Star"],
-        category: "senior-ladies",
+        category: "senior-women",
     },
     {
         name: "Geofrey Muthiani Ssendegeyo",
@@ -134,20 +134,33 @@ const Team = () => {
     // Get team members from Firebase
     const { teamMembers: firebaseTeamMembers, loading } = useData()
 
-    // Use Firebase data if available, otherwise fall back to static data
-    const currentTeamMembers = firebaseTeamMembers && firebaseTeamMembers.length > 0 ? firebaseTeamMembers : teamMembers
+    // Always use Firebase data - no fallback to static data to prevent duplication
+    const currentTeamMembers = firebaseTeamMembers || []
 
     const filteredMembers = currentTeamMembers.filter((member) => filter === "all" || member.category === filter)
     const displayedMembers = showAll ? filteredMembers : filteredMembers.slice(0, 6)
 
     // Show loading state while fetching data
-    if (loading && (!firebaseTeamMembers || firebaseTeamMembers.length === 0)) {
+    if (loading) {
         return (
             <section className="relative py-20 overflow-hidden">
                 <div className="container mx-auto px-4">
                     <div className="text-center">
                         <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#0d46d7]"></div>
                         <p className="mt-4 text-gray-600">Loading team members...</p>
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
+    // Show empty state if no team members
+    if (!loading && currentTeamMembers.length === 0) {
+        return (
+            <section className="relative py-20 overflow-hidden">
+                <div className="container mx-auto px-4">
+                    <div className="text-center">
+                        <p className="text-gray-600">No team members found. Please check back later.</p>
                     </div>
                 </div>
             </section>
@@ -272,12 +285,14 @@ const Team = () => {
                                         {/* Category Badge */}
                                         <div className="absolute top-4 left-4">
                                             <div
-                                                className={`px-3 py-1.5 rounded-full text-xs font-bold text-white shadow-lg ${member.category === "senior-ladies"
+                                                className={`px-3 py-1.5 rounded-full text-xs font-bold text-white shadow-lg ${member.category === "senior-women" || member.category === "junior-women"
                                                     ? "bg-gradient-to-r from-pink-500 to-rose-500"
                                                     : "bg-gradient-to-r from-blue-500 to-indigo-500"
                                                     }`}
                                             >
-                                                {member.category === "senior-ladies" ? "LADIES" : "MEN"}
+                                                {member.category === "senior-women" ? "SENIOR WOMEN" :
+                                                    member.category === "junior-women" ? "JUNIOR WOMEN" :
+                                                        member.category === "senior-men" ? "SENIOR MEN" : "JUNIOR MEN"}
                                             </div>
                                         </div>
 

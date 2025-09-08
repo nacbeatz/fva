@@ -10,12 +10,12 @@ interface TeamMember {
   image: string;
   bio: string;
   achievements?: string[];
-  category: "senior-ladies" | "senior-men";
+  category: "senior-men" | "senior-women" | "junior-men" | "junior-women";
   instagram?: string;
 }
 
 export default function TeamManagement() {
-  const { teamMembers, addTeamMember, updateTeamMember, deleteTeamMember, loading: dataLoading, error: dataError } = useData();
+  const { teamMembers, addTeamMember, updateTeamMember, deleteTeamMember, loading: dataLoading, error: dataError, refreshData } = useData();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,7 +29,7 @@ export default function TeamManagement() {
     image: '',
     bio: '',
     achievements: '',
-    category: 'senior-men' as "senior-ladies" | "senior-men",
+    category: 'senior-men' as "senior-men" | "senior-women" | "junior-men" | "junior-women",
     instagram: ''
   });
 
@@ -139,7 +139,7 @@ export default function TeamManagement() {
       setFormError('Invalid team member ID');
       return;
     }
-    
+
     if (confirm('Are you sure you want to delete this team member?')) {
       try {
         setFormError(null);
@@ -150,16 +150,14 @@ export default function TeamManagement() {
     }
   };
 
-
-
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <h2 className="text-xl font-semibold text-gray-900">Team Members</h2>
         <button
           onClick={() => setIsFormOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium w-full sm:w-auto"
         >
           Add Team Member
         </button>
@@ -182,14 +180,14 @@ export default function TeamManagement() {
 
       {/* Form Modal */}
       {isFormOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <h3 className="text-lg font-semibold mb-4">
               {editingMember ? 'Edit Team Member' : 'Add Team Member'}
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Name</label>
                   <input
@@ -213,7 +211,7 @@ export default function TeamManagement() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Country</label>
                   <input
@@ -229,11 +227,13 @@ export default function TeamManagement() {
                   <label className="block text-sm font-medium text-gray-700">Category</label>
                   <select
                     value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value as "senior-ladies" | "senior-men" })}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value as "senior-men" | "senior-women" | "junior-men" | "junior-women" })}
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
                   >
                     <option value="senior-men">Senior Men</option>
-                    <option value="senior-ladies">Senior Ladies</option>
+                    <option value="senior-women">Senior Women</option>
+                    <option value="junior-men">Junior Men</option>
+                    <option value="junior-women">Junior Women</option>
                   </select>
                 </div>
               </div>
@@ -394,64 +394,108 @@ export default function TeamManagement() {
 
       {/* Team Members List */}
       <div className="bg-white shadow rounded-lg overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Member
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Role
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Category
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Country
-              </th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+        {/* Desktop Table View */}
+        <div className="hidden md:block">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Member
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Role
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Category
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Country
+                </th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {teamMembers.map((member) => (
+                <tr key={member.id}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center">
+                      <img className="h-10 w-10 rounded-full object-cover" src={member.image} alt={member.name} />
+                      <div className="ml-4">
+                        <div className="text-sm font-medium text-gray-900">{member.name}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {member.role}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {member.category === 'senior-men' ? 'Senior Men' :
+                      member.category === 'senior-women' ? 'Senior Women' :
+                        member.category === 'junior-men' ? 'Junior Men' : 'Junior Women'}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {member.country}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button
+                      onClick={() => handleEdit(member)}
+                      className="text-blue-600 hover:text-blue-900 mr-3"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(member.id)}
+                      className="text-red-600 hover:text-red-900"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Mobile Card View */}
+        <div className="md:hidden">
+          <div className="divide-y divide-gray-200">
             {teamMembers.map((member) => (
-              <tr key={member.id}>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    <img className="h-10 w-10 rounded-full object-cover" src={member.image} alt={member.name} />
-                    <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">{member.name}</div>
+              <div key={member.id} className="p-4">
+                <div className="flex items-start space-x-4">
+                  <img className="h-12 w-12 rounded-full object-cover flex-shrink-0" src={member.image} alt={member.name} />
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-medium text-gray-900 truncate">{member.name}</div>
+                    <div className="text-sm text-gray-500 truncate">{member.role}</div>
+                    <div className="mt-1 text-xs text-gray-500">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 mr-2">
+                        {member.category === 'senior-men' ? 'Senior Men' :
+                          member.category === 'senior-women' ? 'Senior Women' :
+                            member.category === 'junior-men' ? 'Junior Men' : 'Junior Women'}
+                      </span>
+                      <span>{member.country}</span>
                     </div>
                   </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {member.role}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {member.category === 'senior-men' ? 'Senior Men' : 'Senior Ladies'}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {member.country}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <button
-                    onClick={() => handleEdit(member)}
-                    className="text-blue-600 hover:text-blue-900 mr-3"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(member.id)}
-                    className="text-red-600 hover:text-red-900"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+                  <div className="flex flex-col space-y-2">
+                    <button
+                      onClick={() => handleEdit(member)}
+                      className="text-blue-600 hover:text-blue-900 text-sm font-medium"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(member.id)}
+                      className="text-red-600 hover:text-red-900 text-sm font-medium"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
+        </div>
 
         {teamMembers.length === 0 && (
           <div className="text-center py-8 text-gray-500">
