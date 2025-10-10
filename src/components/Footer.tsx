@@ -36,11 +36,10 @@ const Footer = () => {
   ]
 
   const socialLinks = [
-    { name: "Instagram", icon: <FontAwesomeIcon icon={["fab", "instagram"]} className="w-5 h-5" />, href: "#instagram" },
-    { name: "Facebook", icon: <FontAwesomeIcon icon={["fab", "facebook"]} className="w-5 h-5" />, href: "#facebook" },
-    { name: "Twitter", icon: <FontAwesomeIcon icon={["fab", "x-twitter"]} className="w-5 h-5" />, href: "#twitter" },
-    { name: "LinkedIn", icon: <FontAwesomeIcon icon={["fab", "linkedin"]} className="w-5 h-5" />, href: "#linkedin" },
-    { name: "YouTube", icon: <FontAwesomeIcon icon={["fab", "youtube"]} className="w-5 h-5" />, href: "#youtube" },
+    { name: "Instagram", icon: <FontAwesomeIcon icon={["fab", "instagram"]} className="w-5 h-5" />, href: "https://instagram.com/fvaracing" },
+    { name: "Facebook", icon: <FontAwesomeIcon icon={["fab", "facebook"]} className="w-5 h-5" />, href: "https://facebook.com/profile.php?id=61557043743602" },
+    { name: "TikTok", icon: <FontAwesomeIcon icon={["fab", "tiktok"]} className="w-5 h-5" />, href: "https://tiktok.com/@fva.racing.team" },
+    { name: "Twitter", icon: <FontAwesomeIcon icon={["fab", "x-twitter"]} className="w-5 h-5" />, href: "https://x.com/fva_racing" },
   ]
 
   return (
@@ -128,8 +127,8 @@ const Footer = () => {
                     </div>
                     <div>
                       <p className="text-blue-100 text-sm">Phone</p>
-                      <a href="tel:+250788123456" className="text-white hover:text-[#FFD000] transition-colors cursor-pointer">
-                        +250 788 123 456
+                      <a href="tel:+32465655192" className="text-white hover:text-[#FFD000] transition-colors cursor-pointer">
+                        +32 465 65 51 92
                       </a>
                     </div>
                   </div>
@@ -139,7 +138,7 @@ const Footer = () => {
                     </div>
                     <div>
                       <p className="text-blue-100 text-sm">Location</p>
-                      <p className="text-white">Kigali Heights, KG 7 Ave, Kigali, Rwanda</p>
+                      <p className="text-white">500 Avenue de L' Umuganda, Gisenyi City, Rwanda</p>
                     </div>
                   </div>
                 </div>
@@ -214,6 +213,8 @@ const Footer = () => {
                     <motion.a
                       key={idx}
                       href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="p-2 bg-white/10 hover:bg-[#FFD000] rounded-lg text-white transition-all duration-300 group cursor-pointer"
                       whileHover={{ y: -3, scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}

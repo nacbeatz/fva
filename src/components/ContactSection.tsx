@@ -243,10 +243,10 @@ const ContactSection = () => {
                                             <h5 className="text-lg font-semibold text-gray-800 mb-1">Phone</h5>
                                             <p className="text-gray-600">Have a question or need direct assistance?</p>
                                             <a
-                                                href="tel:+250788123456"
+                                                href="tel:+32465655192"
                                                 className="text-[#0d46d7] hover:text-[#EE7A3F] font-medium transition-colors flex items-center gap-1 mt-2 cursor-pointer"
                                             >
-                                                +250 788 123 456
+                                                +32 465 65 51 92
                                                 <FontAwesomeIcon icon={["fas", "arrow-right"]} className="w-3 h-3" />
                                             </a>
                                         </div>
@@ -280,13 +280,9 @@ const ContactSection = () => {
                                         <div>
                                             <h5 className="text-lg font-semibold text-gray-800 mb-1">Our Location</h5>
                                             <p className="text-gray-600">Visit us at our office during business hours.</p>
-                                            <a
-                                                href="#"
-                                                className="text-[#0d46d7] hover:text-[#EE7A3F] font-medium transition-colors flex items-center gap-1 mt-2 cursor-pointer"
-                                            >
-                                                Kigali Heights, KG 7 Ave, Kigali
-                                                <FontAwesomeIcon icon={["fas", "arrow-right"]} className="w-3 h-3" />
-                                            </a>
+                                            <p className="text-[#0d46d7] font-medium mt-2">
+                                                500 Avenue de L' Umuganda, Gisenyi City, Rwanda
+                                            </p>
                                         </div>
                                     </motion.div>
                                 </div>
@@ -302,16 +298,31 @@ const ContactSection = () => {
                                     <h4 className="text-2xl font-bold text-gray-800 mb-6">Connect With Us</h4>
                                     <div className="flex justify-center space-x-6">
                                         <motion.a
-                                            href="#"
+                                            href="https://facebook.com/profile.php?id=61557043743602"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
                                             whileHover={{ y: -5, scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
-                                            aria-label="Twitter"
+                                            aria-label="Facebook"
                                         >
-                                            <FontAwesomeIcon icon={["fab", "x-twitter"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
+                                            <FontAwesomeIcon icon={["fab", "facebook"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
                                         </motion.a>
                                         <motion.a
-                                            href="#"
+                                            href="https://tiktok.com/@fva.racing.team"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                                            whileHover={{ y: -5, scale: 1.1 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            aria-label="TikTok"
+                                        >
+                                            <FontAwesomeIcon icon={["fab", "tiktok"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
+                                        </motion.a>
+                                        <motion.a
+                                            href="https://instagram.com/fvaracing"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
                                             whileHover={{ y: -5, scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
@@ -320,22 +331,15 @@ const ContactSection = () => {
                                             <FontAwesomeIcon icon={["fab", "instagram"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
                                         </motion.a>
                                         <motion.a
-                                            href="#"
+                                            href="https://x.com/fva_racing"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
                                             whileHover={{ y: -5, scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
-                                            aria-label="LinkedIn"
+                                            aria-label="Twitter"
                                         >
-                                            <FontAwesomeIcon icon={["fab", "linkedin"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
-                                        </motion.a>
-                                        <motion.a
-                                            href="#"
-                                            className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
-                                            whileHover={{ y: -5, scale: 1.1 }}
-                                            whileTap={{ scale: 0.9 }}
-                                            aria-label="GitHub"
-                                        >
-                                            <FontAwesomeIcon icon={["fab", "github"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
+                                            <FontAwesomeIcon icon={["fab", "x-twitter"]} className="w-7 h-7 text-gray-700 group-hover:text-[#0d46d7] transition-colors" />
                                         </motion.a>
                                     </div>
                                 </motion.div>

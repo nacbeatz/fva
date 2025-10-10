@@ -17,16 +17,17 @@ const Navigation = () => {
         { name: "ABOUT", href: "#about-section", id: "about-section" },
         { name: "COMPETITIONS", href: "#competitions-section", id: "competitions-section" },
         { name: "SUPPORT", href: "#support-section", id: "support-section" },
+        { name: "INVEST", href: "#invest-section", id: "invest-section" },
         { name: "TEAM", href: "#team-section", id: "team-section" },
         { name: "PARTNERS", href: "#partners-section", id: "partners-section" },
         { name: "CONTACT", href: "#contact-section", id: "contact-section" },
     ]
 
     const socialLinks = [
-        { name: "Instagram", icon: <FontAwesomeIcon icon={["fab", "instagram"]} className="w-5 h-5" />, href: "#instagram" },
-        { name: "Facebook", icon: <FontAwesomeIcon icon={["fab", "facebook"]} className="w-5 h-5" />, href: "#facebook" },
-        { name: "Twitter", icon: <FontAwesomeIcon icon={["fab", "x-twitter"]} className="w-5 h-5" />, href: "#twitter" },
-        { name: "LinkedIn", icon: <FontAwesomeIcon icon={["fab", "linkedin"]} className="w-5 h-5" />, href: "#linkedin" },
+        { name: "Instagram", icon: <FontAwesomeIcon icon={["fab", "instagram"]} className="w-5 h-5" />, href: "https://instagram.com/fvaracing" },
+        { name: "Facebook", icon: <FontAwesomeIcon icon={["fab", "facebook"]} className="w-5 h-5" />, href: "https://facebook.com/profile.php?id=61557043743602" },
+        { name: "TikTok", icon: <FontAwesomeIcon icon={["fab", "tiktok"]} className="w-5 h-5" />, href: "https://tiktok.com/@fva.racing.team" },
+        { name: "Twitter", icon: <FontAwesomeIcon icon={["fab", "x-twitter"]} className="w-5 h-5" />, href: "https://x.com/fva_racing" },
     ]
 
     useEffect(() => {
@@ -139,19 +140,26 @@ const Navigation = () => {
                             {navigationItems.map((item, index) => (
                                 <motion.button
                                     key={item.name}
-                                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${activeSection === item.id ? "text-[#0d46d7]" : "text-gray-700 hover:text-[#0d46d7]"
+                                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer group ${activeSection === item.id ? "text-[#0d46d7]" : "text-gray-700 hover:text-[#0d46d7]"
                                         }`}
                                     onClick={() => scrollToSection(item.id)}
                                     whileHover={{ y: -2 }}
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.1, duration: 0.5 }}
+                                    title={item.name === "INVEST" ? "Invest in the Future" : ""}
                                 >
                                     {item.name}
                                     {activeSection === item.id && (
                                         <div
                                             className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0d46d7] to-[#FFD000]"
                                         />
+                                    )}
+                                    {/* Tooltip for INVEST */}
+                                    {item.name === "INVEST" && (
+                                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                                            Invest in the Future
+                                        </div>
                                     )}
                                 </motion.button>
                             ))}
@@ -261,7 +269,7 @@ const Navigation = () => {
                                             whileTap={{ scale: 0.98 }}
                                         >
                                             <div className="flex items-center justify-between">
-                                                {item.name}
+                                                {item.name === "INVEST" ? "INVEST IN THE FUTURE" : item.name}
                                                 {activeSection === item.id && (
                                                     <motion.div
                                                         className="w-2 h-2 bg-[#0d46d7] rounded-full"
@@ -288,6 +296,8 @@ const Navigation = () => {
                                             <motion.a
                                                 key={social.name}
                                                 href={social.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
                                                 className="p-3 bg-gray-50 hover:bg-[#0d46d7] hover:text-white rounded-xl transition-all duration-300 cursor-pointer"
                                                 whileHover={{ scale: 1.1, rotate: 5 }}
                                                 whileTap={{ scale: 0.9 }}
