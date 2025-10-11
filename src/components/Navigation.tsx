@@ -335,7 +335,7 @@ const Navigation = () => {
 
                         {/* Modal */}
                         <motion.div
-                            className="fixed inset-4 md:inset-8 lg:inset-16 bg-white rounded-3xl shadow-2xl z-[2001] overflow-hidden"
+                            className="fixed inset-4 md:inset-8 lg:inset-16 bg-white shadow-2xl z-[2001] overflow-hidden"
                             initial={{ opacity: 0, scale: 0.9, y: 50 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 50 }}
