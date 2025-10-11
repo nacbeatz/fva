@@ -1,95 +1,70 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InvestInFutureSection: React.FC = () => {
-    const [activeTab, setActiveTab] = useState('partnerships');
-    const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
     const investmentOptions = [
         {
-            id: 'partnerships',
-            title: "Strategic Partnerships",
-            description: "Long-term corporate partnerships with measurable ROI and brand impact",
-            icon: "handshake",
-            color: "from-blue-500 to-blue-700",
-            benefits: ["Brand exposure", "CSR impact", "Talent pipeline", "Market expansion", "Media coverage", "Community engagement"],
-            action: "Explore Partnerships",
-            investment: "$10K - $100K+",
-            timeline: "12-24 months",
-            roi: "15-25% annual"
-        },
-        {
             id: 'facilities',
-            title: "Facility Development",
-            description: "State-of-the-art training centers and equipment for athlete development",
+            title: "Facilities & Infrastructure",
+            description: "Building professional inline speed skating tracks, FVA Headquarters, Circus Arts & Fashion Hub, and athlete accommodations",
             icon: "building",
             color: "from-green-500 to-green-700",
-            benefits: ["Modern infrastructure", "Advanced equipment", "Training programs", "Community impact", "Legacy naming", "Tax benefits"],
-            action: "View Facilities",
-            investment: "$50K - $500K+",
-            timeline: "6-18 months",
-            roi: "20-30% annual"
+            benefits: ["3 professional skating tracks", "FVA Headquarters & Offices", "Circus Arts & Fashion Hub", "Training camps & accommodations", "Gym & fitness center", "Transport vehicles"],
+            action: "View Infrastructure Plan",
+            investment: "$2M - $3M",
+            timeline: "3 years",
+            roi: "Sustainable operations"
         },
         {
-            id: 'technology',
-            title: "Tech Innovation",
-            description: "Cutting-edge sports technology and data analytics partnerships",
+            id: 'equipment',
+            title: "Equipment & Technology",
+            description: "High-quality sporting equipment and digital training tools with data-driven coaching",
             icon: "laptop-code",
             color: "from-purple-500 to-purple-700",
-            benefits: ["Performance analytics", "Innovation showcase", "Research collaboration", "Future-ready training", "IP development", "Market leadership"],
-            action: "Innovate Together",
-            investment: "$25K - $200K+",
-            timeline: "3-12 months",
-            roi: "25-40% annual"
+            benefits: ["Professional skates & bicycles", "Safety gear & uniforms", "Digital training tools", "Data-driven coaching", "Tech partnerships", "Performance analytics"],
+            action: "Explore Technology",
+            investment: "$500K - $1M",
+            timeline: "1-2 years",
+            roi: "Enhanced performance"
         },
         {
-            id: 'sponsorship',
-            title: "Premium Sponsorship",
-            description: "Exclusive sponsorship packages for events and athlete support",
-            icon: "trophy",
+            id: 'talent',
+            title: "Talent Development",
+            description: "International coaches, mentors, and life support for athletes and staff",
+            icon: "users",
+            color: "from-blue-500 to-blue-700",
+            benefits: ["International coaches", "Professional mentors", "Life support & salaries", "Athlete development", "Staff training", "Global excellence"],
+            action: "Support Talent",
+            investment: "$1M - $1.5M",
+            timeline: "3 years",
+            roi: "Champion development"
+        },
+        {
+            id: 'manufacturing',
+            title: "Local Manufacturing",
+            description: "Factory and machines to produce custom sporting materials locally with retail operations",
+            icon: "industry",
             color: "from-orange-500 to-orange-700",
-            benefits: ["Event branding", "Athlete sponsorship", "Media exposure", "ROI tracking", "Exclusive access", "Global reach"],
-            action: "View Packages",
-            investment: "$5K - $50K+",
-            timeline: "1-12 months",
-            roi: "10-20% annual"
+            benefits: ["Custom sporting materials", "Local production", "Retail operations", "Job creation", "Economic impact", "Self-sustainability"],
+            action: "Invest in Manufacturing",
+            investment: "$500K - $1M",
+            timeline: "2-3 years",
+            roi: "Self-sustaining operations"
         }
     ];
 
-    const testimonials = [
-        {
-            name: "Sarah Johnson",
-            company: "TechCorp Africa",
-            role: "CSR Director",
-            quote: "Our partnership with FVA has delivered exceptional ROI while creating meaningful impact in African sports development.",
-            avatar: "👩‍💼"
-        },
-        {
-            name: "Michael Chen",
-            company: "Global Sports Inc",
-            role: "Investment Manager",
-            quote: "The facility investment exceeded our expectations. The community impact and brand visibility have been outstanding.",
-            avatar: "👨‍💼"
-        },
-        {
-            name: "Amina Hassan",
-            company: "Innovation Labs",
-            role: "Tech Director",
-            quote: "Collaborating on sports technology with FVA has opened new markets and created breakthrough innovations.",
-            avatar: "👩‍🔬"
-        }
-    ];
 
     const stats = [
-        { number: "50+", label: "Athletes Supported", icon: "users" },
-        { number: "15+", label: "Countries Represented", icon: "globe" },
-        { number: "100%", label: "Impact Focused", icon: "heart" },
-        { number: "25+", label: "Corporate Partners", icon: "handshake" }
+        { number: "$4M-$6M", label: "3-Year Strategic Plan", icon: "chart-line" },
+        { number: "3", label: "Professional Skating Tracks", icon: "building" },
+        { number: "100%", label: "African Youth Focus", icon: "heart" },
+        { number: "Multi-Sport", label: "Sports & Technology", icon: "trophy" }
     ];
 
     return (
-        <section id="invest-section" className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-24 relative overflow-hidden">
+        <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-24 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 bg-[url('/placeholder.svg?height=100&width=100')] bg-repeat opacity-5"></div>
             <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
@@ -120,8 +95,7 @@ const InvestInFutureSection: React.FC = () => {
                         Invest in the Future
                     </h2>
                     <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-8">
-                        Transform your business investment into lasting social impact while gaining 
-                        <span className="font-semibold text-[#0d46d7]"> measurable returns</span> through strategic partnerships.
+                        At FVA Racing Team, we are on a mission to create opportunities for African youth through sports, Technology, and Cultural Exchange. By investing in us, you help train future champions, build sustainable projects, and inspire the next generation across Africa.
                     </p>
                     
                     {/* Quick Stats */}
@@ -147,143 +121,68 @@ const InvestInFutureSection: React.FC = () => {
                     </div>
                 </motion.div>
 
-                {/* Tab Navigation */}
-                <motion.div
-                    className="flex flex-wrap justify-center gap-4 mb-16"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                >
-                    {investmentOptions.map((option) => (
-                        <motion.button
+                {/* Investment Options Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    {investmentOptions.map((option, index) => (
+                        <motion.div
                             key={option.id}
-                            onClick={() => setActiveTab(option.id)}
-                            className={`px-8 py-4 rounded-2xl font-semibold transition-all duration-300 ${
-                                activeTab === option.id
-                                    ? 'bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] text-white shadow-lg'
-                                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
-                            }`}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            viewport={{ once: true }}
+                            className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300"
                         >
-                            {option.title}
-                        </motion.button>
-                    ))}
-                </motion.div>
-
-                {/* Dynamic Content Based on Active Tab */}
-                <AnimatePresence mode="wait">
-                    {investmentOptions.map((option) => (
-                        activeTab === option.id && (
-                            <motion.div
-                                key={option.id}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -30 }}
-                                transition={{ duration: 0.5 }}
-                                className="bg-white rounded-3xl p-12 shadow-2xl border border-gray-100 mb-16"
-                            >
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                                    {/* Left Content */}
-                                    <div>
-                                        <div className="flex items-center mb-6">
-                                            <div className={`w-20 h-20 bg-gradient-to-br ${option.color} rounded-3xl flex items-center justify-center mr-6`}>
-                                                <FontAwesomeIcon icon={["fas", option.icon as any]} className="w-10 h-10 text-white" />
-                                            </div>
-                                            <div>
-                                                <h3 className="text-3xl font-bold text-gray-800 mb-2">{option.title}</h3>
-                                                <p className="text-gray-600 text-lg">{option.description}</p>
-                                            </div>
-                                        </div>
-
-                                        {/* Investment Details */}
-                                        <div className="grid grid-cols-3 gap-4 mb-8">
-                                            <div className="bg-gray-50 rounded-2xl p-4 text-center">
-                                                <div className="text-sm text-gray-500 mb-1">Investment</div>
-                                                <div className="font-bold text-[#0d46d7]">{option.investment}</div>
-                                            </div>
-                                            <div className="bg-gray-50 rounded-2xl p-4 text-center">
-                                                <div className="text-sm text-gray-500 mb-1">Timeline</div>
-                                                <div className="font-bold text-[#0d46d7]">{option.timeline}</div>
-                                            </div>
-                                            <div className="bg-gray-50 rounded-2xl p-4 text-center">
-                                                <div className="text-sm text-gray-500 mb-1">Expected ROI</div>
-                                                <div className="font-bold text-green-600">{option.roi}</div>
-                                            </div>
-                                        </div>
-
-                                        {/* Benefits */}
-                                        <div className="mb-8">
-                                            <h4 className="text-xl font-bold text-gray-800 mb-4">Key Benefits</h4>
-                                            <div className="grid grid-cols-2 gap-3">
-                                                {option.benefits.map((benefit, idx) => (
-                                                    <div key={idx} className="flex items-center">
-                                                        <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3" />
-                                                        <span className="text-gray-700">{benefit}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <motion.button
-                                            className="bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#FFD000] hover:to-[#ff8c42] text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 cursor-pointer"
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                        >
-                                            {option.action}
-                                        </motion.button>
-                                    </div>
-
-                                    {/* Right Visual */}
-                                    <div className="relative">
-                                        <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl h-96 flex items-center justify-center">
-                                            <div className="text-center">
-                                                <div className="text-6xl mb-4">📊</div>
-                                                <div className="text-xl font-semibold text-gray-600">Investment Analytics</div>
-                                                <div className="text-gray-500">Real-time ROI tracking</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            {/* Header */}
+                            <div className="flex items-center mb-6">
+                                <div className={`w-16 h-16 bg-gradient-to-br ${option.color} rounded-2xl flex items-center justify-center mr-4`}>
+                                    <FontAwesomeIcon icon={["fas", option.icon as any]} className="w-8 h-8 text-white" />
                                 </div>
-                            </motion.div>
-                        )
-                    ))}
-                </AnimatePresence>
-
-                {/* Enhanced Testimonials */}
-                <motion.div
-                    className="mb-20"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                >
-                    <h3 className="text-4xl font-bold text-center text-gray-800 mb-12">
-                        What Our Partners Say
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {testimonials.map((testimonial, index) => (
-                            <motion.div
-                                key={index}
-                                className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100"
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                whileHover={{ y: -10, scale: 1.02 }}
-                            >
-                                <div className="text-4xl mb-4">{testimonial.avatar}</div>
-                                <p className="text-gray-700 mb-6 italic">"{testimonial.quote}"</p>
-                                <div className="border-t pt-4">
-                                    <div className="font-bold text-gray-800">{testimonial.name}</div>
-                                    <div className="text-sm text-gray-600">{testimonial.role}</div>
-                                    <div className="text-sm font-semibold text-[#0d46d7]">{testimonial.company}</div>
+                                <div>
+                                    <h3 className="text-2xl font-bold text-gray-800 mb-2">{option.title}</h3>
+                                    <p className="text-gray-600">{option.description}</p>
                                 </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+                            </div>
+
+                            {/* Investment Details */}
+                            <div className="grid grid-cols-3 gap-3 mb-6">
+                                <div className="bg-gray-50 rounded-xl p-3 text-center">
+                                    <div className="text-xs text-gray-500 mb-1">Investment</div>
+                                    <div className="font-bold text-[#0d46d7] text-sm">{option.investment}</div>
+                                </div>
+                                <div className="bg-gray-50 rounded-xl p-3 text-center">
+                                    <div className="text-xs text-gray-500 mb-1">Timeline</div>
+                                    <div className="font-bold text-[#0d46d7] text-sm">{option.timeline}</div>
+                                </div>
+                                <div className="bg-gray-50 rounded-xl p-3 text-center">
+                                    <div className="text-xs text-gray-500 mb-1">ROI</div>
+                                    <div className="font-bold text-green-600 text-sm">{option.roi}</div>
+                                </div>
+                            </div>
+
+                            {/* Benefits */}
+                            <div className="mb-6">
+                                <h4 className="text-lg font-bold text-gray-800 mb-3">Key Benefits</h4>
+                                <div className="grid grid-cols-1 gap-2">
+                                    {option.benefits.map((benefit, idx) => (
+                                        <div key={idx} className="flex items-center">
+                                            <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                                            <span className="text-gray-700 text-sm">{benefit}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <motion.button
+                                className="w-full bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#FFD000] hover:to-[#ff8c42] text-white px-6 py-3 rounded-xl font-bold transition-all duration-300 cursor-pointer"
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                {option.action}
+                            </motion.button>
+                        </motion.div>
+                    ))}
+                </div>
+
 
                 {/* Enhanced CTA Section */}
                 <motion.div
@@ -298,11 +197,10 @@ const InvestInFutureSection: React.FC = () => {
                     
                     <div className="relative z-10">
                         <h3 className="text-4xl font-bold mb-6">
-                            Ready to Make a Strategic Investment?
+                            Be Part of Africa's Transformation
                         </h3>
                         <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto">
-                            Join industry leaders who are already transforming African sports through strategic partnerships. 
-                            Let's discuss how your investment can create lasting impact while delivering measurable returns.
+                            This is more than sports. It's about empowering children, youth, and adults through Inline Speed Skating, Cycling, Circus arts, music, and Technology, helping them reach global excellence without leaving Africa while addressing migration challenges and building local talent.
                         </p>
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
@@ -329,14 +227,14 @@ const InvestInFutureSection: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                Schedule Strategy Call
+                                Invest in the Future
                             </motion.button>
                             <motion.button
                                 className="border-2 border-white text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white hover:text-[#0d46d7] transition-all cursor-pointer"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                Download Investment Guide
+                                View Strategic Plan
                             </motion.button>
                         </div>
                     </div>

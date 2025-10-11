@@ -11,13 +11,13 @@ const Navigation = () => {
     const [isVisible, setIsVisible] = useState(true)
     const [lastScrollY, setLastScrollY] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isInvestmentModalOpen, setIsInvestmentModalOpen] = useState(false)
 
     const navigationItems = [
         { name: "HOME", href: "#home", id: "home" },
         { name: "ABOUT", href: "#about-section", id: "about-section" },
         { name: "COMPETITIONS", href: "#competitions-section", id: "competitions-section" },
         { name: "SUPPORT", href: "#support-section", id: "support-section" },
-        { name: "INVEST", href: "#invest-section", id: "invest-section" },
         { name: "TEAM", href: "#team-section", id: "team-section" },
         { name: "PARTNERS", href: "#partners-section", id: "partners-section" },
         { name: "CONTACT", href: "#contact-section", id: "contact-section" },
@@ -147,19 +147,12 @@ const Navigation = () => {
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.1, duration: 0.5 }}
-                                    title={item.name === "INVEST" ? "Invest in the Future" : ""}
                                 >
                                     {item.name}
                                     {activeSection === item.id && (
                                         <div
                                             className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0d46d7] to-[#FFD000]"
                                         />
-                                    )}
-                                    {/* Tooltip for INVEST */}
-                                    {item.name === "INVEST" && (
-                                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                                            Invest in the Future
-                                        </div>
                                     )}
                                 </motion.button>
                             ))}
@@ -188,9 +181,9 @@ const Navigation = () => {
                                 className="bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#FFD000] hover:to-[#ff8c42] text-white px-6 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() => scrollToSection("support-section")}
+                                onClick={() => setIsInvestmentModalOpen(true)}
                             >
-                                Join Us
+                                Invest in the Future
                             </motion.button>
                         </div>
 
@@ -269,7 +262,7 @@ const Navigation = () => {
                                             whileTap={{ scale: 0.98 }}
                                         >
                                             <div className="flex items-center justify-between">
-                                                {item.name === "INVEST" ? "INVEST IN THE FUTURE" : item.name}
+                                                {item.name}
                                                 {activeSection === item.id && (
                                                     <motion.div
                                                         className="w-2 h-2 bg-[#0d46d7] rounded-full"
@@ -312,15 +305,177 @@ const Navigation = () => {
                                 {/* Mobile CTA */}
                                 <motion.button
                                     className="w-full mt-6 bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#FFD000] hover:to-[#ff8c42] text-white px-6 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                                    onClick={() => scrollToSection("support-section")}
+                                    onClick={() => setIsInvestmentModalOpen(true)}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.4, duration: 0.3 }}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
-                                    Join Our Team
+                                    Invest in the Future
                                 </motion.button>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+
+            {/* Investment Modal */}
+            <AnimatePresence>
+                {isInvestmentModalOpen && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[2000]"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsInvestmentModalOpen(false)}
+                        />
+
+                        {/* Modal */}
+                        <motion.div
+                            className="fixed inset-4 md:inset-8 lg:inset-16 bg-white rounded-3xl shadow-2xl z-[2001] overflow-hidden"
+                            initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 50 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                        >
+                            <div className="h-full overflow-y-auto">
+                                {/* Header */}
+                                <div className="bg-gradient-to-r from-[#0d46d7] via-[#1e5bff] to-[#FFD000] p-8 text-white relative">
+                                    <button
+                                        className="absolute top-6 right-6 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors cursor-pointer"
+                                        onClick={() => setIsInvestmentModalOpen(false)}
+                                    >
+                                        <FontAwesomeIcon icon={["fas", "xmark"]} className="w-5 h-5" />
+                                    </button>
+                                    <h2 className="text-4xl md:text-5xl font-bold mb-4">Invest in the Future</h2>
+                                    <p className="text-xl opacity-90">FVA Racing Team Strategic Investment Plan</p>
+                                </div>
+
+                                {/* Content */}
+                                <div className="p-8 md:p-12">
+                                    {/* Mission Statement */}
+                                    <div className="mb-12">
+                                        <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                                            At FVA Racing Team, we are on a mission to create opportunities for African youth through sports, Technology, and Cultural Exchange. By investing in us, you help train future champions, build sustainable projects, and inspire the next generation across Africa.
+                                        </p>
+                                        
+                                        <div className="bg-gradient-to-r from-[#0d46d7]/10 to-[#FFD000]/10 rounded-2xl p-6 border border-[#0d46d7]/20">
+                                            <h3 className="text-2xl font-bold text-[#0d46d7] mb-2">Our 3-Year Strategic Plan</h3>
+                                            <p className="text-3xl font-bold text-[#0d46d7]">$4,000,000 – $6,000,000</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Investment Areas */}
+                                    <div className="space-y-8">
+                                        <h3 className="text-2xl font-bold text-gray-800 mb-6">Your investment will directly support:</h3>
+                                        
+                                        {/* Facilities & Infrastructure */}
+                                        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                            <h4 className="text-xl font-bold text-[#0d46d7] mb-4 flex items-center">
+                                                <FontAwesomeIcon icon={["fas", "building"]} className="w-6 h-6 mr-3" />
+                                                Facilities & Infrastructure
+                                            </h4>
+                                            <ul className="space-y-3 text-gray-700">
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Building 3 professional inline speed skating tracks, accessible to local and international teams.</span>
+                                                </li>
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Establishing the FVA Headquarters & Offices for administration and operations.</span>
+                                                </li>
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Creating a Circus Arts & Fashion Hub to foster creativity and performance.</span>
+                                                </li>
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Setting up training camps and athlete accommodations.</span>
+                                                </li>
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Constructing a fully equipped gym and fitness center.</span>
+                                                </li>
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Purchasing transport vehicles to support athletes and staff.</span>
+                                                </li>
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Investing in a factory and machines to produce custom sporting and performance materials locally, with a retail shop to sustain operations.</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        {/* Equipment & Technology */}
+                                        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                            <h4 className="text-xl font-bold text-[#0d46d7] mb-4 flex items-center">
+                                                <FontAwesomeIcon icon={["fas", "laptop-code"]} className="w-6 h-6 mr-3" />
+                                                Equipment & Technology
+                                            </h4>
+                                            <ul className="space-y-3 text-gray-700">
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Providing high-quality skates, bicycles, uniforms, and safety gear.</span>
+                                                </li>
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Developing digital training tools and data-driven coaching in partnership with tech leaders.</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        {/* Talent Development */}
+                                        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                            <h4 className="text-xl font-bold text-[#0d46d7] mb-4 flex items-center">
+                                                <FontAwesomeIcon icon={["fas", "users"]} className="w-6 h-6 mr-3" />
+                                                Talent Development
+                                            </h4>
+                                            <ul className="space-y-3 text-gray-700">
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Hiring international coaches, mentors, and facilitators.</span>
+                                                </li>
+                                                <li className="flex items-start">
+                                                    <FontAwesomeIcon icon={["fas", "check-circle"]} className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                                                    <span>Offering life support and salaries for athletes and staff, ensuring they can have life safety and focus on excellence.</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    {/* Call to Action */}
+                                    <div className="mt-12 bg-gradient-to-r from-[#0d46d7]/10 to-[#FFD000]/10 rounded-2xl p-8 border border-[#0d46d7]/20">
+                                        <p className="text-lg text-gray-700 mb-6">
+                                            This is more than sports. It's about empowering children, youth, and adults through Inline Speed Skating, Cycling, Circus arts, music, and Technology, helping them reach global excellence without leaving Africa addressing migration challenges while building local talent.
+                                        </p>
+                                        <div className="text-center">
+                                            <h4 className="text-2xl font-bold text-[#0d46d7] mb-4">Be part of Africa's technological and sporting transformation.</h4>
+                                            <p className="text-xl font-semibold text-[#0d46d7]">Invest in the Future with FVA Racing Team.</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Action Buttons */}
+                                    <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                                        <motion.button
+                                            className="bg-gradient-to-r from-[#0d46d7] to-[#1e5bff] hover:from-[#FFD000] hover:to-[#ff8c42] text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            Get Investment Details
+                                        </motion.button>
+                                        <motion.button
+                                            className="border-2 border-[#0d46d7] text-[#0d46d7] hover:bg-[#0d46d7] hover:text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 cursor-pointer"
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            Schedule Meeting
+                                        </motion.button>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                     </>

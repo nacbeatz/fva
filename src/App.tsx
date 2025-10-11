@@ -4,7 +4,6 @@ import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import CompetitionsSection from './components/CompetitionsSection';
 import SupportSection from './components/SupportSection';
-import InvestInFutureSection from './components/InvestInFutureSection';
 import PartnersSection from './components/PartnersSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
@@ -29,7 +28,6 @@ export default function App() {
                 <AboutSection />
                 <CompetitionsSection />
                 <SupportSection />
-                <InvestInFutureSection />
                 <div id="team-section">
                   <Team />
                 </div>
