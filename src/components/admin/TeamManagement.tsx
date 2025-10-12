@@ -22,6 +22,12 @@ export default function TeamManagement() {
   const [formError, setFormError] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUploading, setImageUploading] = useState(false);
+  
+  // Search and filter states
+  const [searchTerm, setSearchTerm] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [countryFilter, setCountryFilter] = useState<string>('all');
+  
   const [formData, setFormData] = useState({
     name: '',
     role: '',
@@ -49,6 +55,28 @@ export default function TeamManagement() {
     setImageFile(null);
     setImageUploading(false);
     setFormError(null);
+  };
+
+  // Filter and search logic
+  const filteredMembers = teamMembers.filter(member => {
+    const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         member.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         member.country.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesCategory = categoryFilter === 'all' || member.category === categoryFilter;
+    const matchesCountry = countryFilter === 'all' || member.country === countryFilter;
+    
+    return matchesSearch && matchesCategory && matchesCountry;
+  });
+
+  // Get unique countries for filter dropdown
+  const uniqueCountries = [...new Set(teamMembers.map(member => member.country))].sort();
+
+  // Clear all filters
+  const clearFilters = () => {
+    setSearchTerm('');
+    setCategoryFilter('all');
+    setCountryFilter('all');
   };
 
   const clearImageSelection = () => {
@@ -154,13 +182,92 @@ export default function TeamManagement() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-        <h2 className="text-xl font-semibold text-gray-900">Team Members</h2>
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900">Team Members</h2>
+          <p className="text-sm text-gray-600 mt-1">
+            {filteredMembers.length} of {teamMembers.length} members
+            {searchTerm || categoryFilter !== 'all' || countryFilter !== 'all' ? ' (filtered)' : ''}
+          </p>
+        </div>
         <button
           onClick={() => setIsFormOpen(true)}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium w-full sm:w-auto"
         >
           Add Team Member
         </button>
+      </div>
+
+      {/* Search and Filters */}
+      <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+        {/* Search Bar */}
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex-1">
+            <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
+              Search Members
+            </label>
+            <input
+              type="text"
+              id="search"
+              placeholder="Search by name, role, or country..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          
+          {/* Category Filter */}
+          <div className="sm:w-48">
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
+              Category
+            </label>
+            <select
+              id="category"
+              value={categoryFilter}
+              onChange={(e) => setCategoryFilter(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="all">All Categories</option>
+              <option value="senior-men">Senior Men</option>
+              <option value="senior-women">Senior Women</option>
+              <option value="junior-men">Junior Men</option>
+              <option value="junior-women">Junior Women</option>
+            </select>
+          </div>
+
+          {/* Country Filter */}
+          <div className="sm:w-48">
+            <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
+              Country
+            </label>
+            <select
+              id="country"
+              value={countryFilter}
+              onChange={(e) => setCountryFilter(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="all">All Countries</option>
+              {uniqueCountries.map(country => (
+                <option key={country} value={country}>{country}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Filter Actions */}
+        {(searchTerm || categoryFilter !== 'all' || countryFilter !== 'all') && (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={clearFilters}
+              className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Clear Filters
+            </button>
+            <span className="text-sm text-gray-500">•</span>
+            <span className="text-sm text-gray-600">
+              Showing {filteredMembers.length} result{filteredMembers.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Loading state */}
@@ -394,9 +501,34 @@ export default function TeamManagement() {
 
       {/* Team Members List */}
       <div className="bg-white shadow rounded-lg overflow-hidden">
-        {/* Desktop Table View */}
-        <div className="hidden md:block">
-          <table className="min-w-full divide-y divide-gray-200">
+        {/* No Results Message */}
+        {filteredMembers.length === 0 && (searchTerm || categoryFilter !== 'all' || countryFilter !== 'all') ? (
+          <div className="text-center py-12">
+            <div className="text-gray-500 text-lg mb-2">No members found</div>
+            <p className="text-gray-400 mb-4">Try adjusting your search or filters</p>
+            <button
+              onClick={clearFilters}
+              className="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Clear all filters
+            </button>
+          </div>
+        ) : filteredMembers.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-gray-500 text-lg mb-2">No team members yet</div>
+            <p className="text-gray-400 mb-4">Add your first team member to get started</p>
+            <button
+              onClick={() => setIsFormOpen(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium"
+            >
+              Add Team Member
+            </button>
+          </div>
+        ) : (
+          <>
+            {/* Desktop Table View */}
+            <div className="hidden md:block">
+              <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -417,7 +549,7 @@ export default function TeamManagement() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {teamMembers.map((member) => (
+              {filteredMembers.map((member) => (
                 <tr key={member.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
@@ -461,7 +593,7 @@ export default function TeamManagement() {
         {/* Mobile Card View */}
         <div className="md:hidden">
           <div className="divide-y divide-gray-200">
-            {teamMembers.map((member) => (
+            {filteredMembers.map((member) => (
               <div key={member.id} className="p-4">
                 <div className="flex items-start space-x-4">
                   <img className="h-12 w-12 rounded-full object-cover flex-shrink-0" src={member.image} alt={member.name} />
@@ -496,11 +628,7 @@ export default function TeamManagement() {
             ))}
           </div>
         </div>
-
-        {teamMembers.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
-            No team members found. Add your first team member!
-          </div>
+          </>
         )}
       </div>
     </div>

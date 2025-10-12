@@ -66,6 +66,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   // Function to fetch data from Firebase
   const fetchData = async () => {
@@ -93,14 +94,40 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // Initialize data on first load
+  // Initialize data on first load only
   useEffect(() => {
     const initializeData = async () => {
+      if (isInitialized) return; // Prevent multiple initializations
+      
       try {
         console.log('🔄 Initializing DataContext...');
+        setIsInitialized(true);
 
         // First, try to fetch existing data from Firestore
         await fetchData();
+
+        // Check if we need to seed data only if no data exists
+        const teamSnapshot = await getTeamMembers();
+        const eventsSnapshot = await getEvents();
+
+        if (teamSnapshot.length === 0 && eventsSnapshot.length === 0) {
+          console.log('📦 No data found, seeding database...');
+          
+          try {
+            // Import initial team data for seeding
+            const teamModule = await import('../components/Team');
+            
+            if (teamModule.teamMembers && teamModule.teamMembers.length > 0) {
+              console.log('🌱 Seeding database with initial team data...');
+              await initializeFirestore(teamModule.teamMembers, []);
+              
+              // Fetch data again after seeding
+              await fetchData();
+            }
+          } catch (seedError) {
+            console.warn('⚠️ Could not seed database with initial data:', seedError);
+          }
+        }
       } catch (err: any) {
         console.error('❌ Error initializing data:', err);
         setError(err.message || 'Failed to initialize data');
@@ -109,35 +136,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
     };
 
     initializeData();
-  }, []); // Empty dependency array to run only once
-
-  // Separate effect to handle seeding only if needed
-  useEffect(() => {
-    const handleSeeding = async () => {
-      // Only seed if we have no team members and no events after initial fetch
-      if (!loading && teamMembers.length === 0 && events.length === 0) {
-        console.log('📦 No data found, checking if we need to seed database...');
-
-        try {
-          // Import initial team data for seeding (events are now admin-only)
-          const teamModule = await import('../components/Team');
-
-          // Only seed team members if we have static data to seed with
-          if (teamModule.teamMembers && teamModule.teamMembers.length > 0) {
-            console.log('🌱 Seeding database with initial team data...');
-            await initializeFirestore(teamModule.teamMembers, []);
-
-            // Fetch data again after seeding
-            await fetchData();
-          }
-        } catch (seedError) {
-          console.warn('⚠️ Could not seed database with initial data:', seedError);
-        }
-      }
-    };
-
-    handleSeeding();
-  }, [loading, teamMembers.length, events.length]); // Run when loading state or data changes
+  }, []); // Empty dependency array - run only once
 
   // Function to refresh data from Firestore
   const refreshData = async () => {

@@ -15,9 +15,9 @@ interface TeamMember {
     instagram?: string
 }
 
-// Static team members as fallback (exported for initialization)
+// Static team members as fallback (exported for initialization only)
+// These are only used for initial database seeding and should not be displayed
 export const teamMembers: TeamMember[] = [
-
     {
         name: "Nsengiyumva Theogene",
         role: "Senior Men's Category - Hope of the Nation",
@@ -55,7 +55,7 @@ export const teamMembers: TeamMember[] = [
         name: "Tabitha Mumbi Mwangi",
         role: "Senior Ladies' Category - Skater & Cyclist",
         country: "Kenya",
-        image: "/team/02.avif",
+        image: "/team/Tabitha - Passport Pic.jpg",
         bio: "A dedicated skater and cyclist with a passion for the sports and a strong work ethic. Known for her commitment to improving and inspiring young athletes.",
         achievements: ["Multi-Sport Athlete", "Youth Mentor"],
         category: "senior-women",
@@ -123,7 +123,6 @@ export const teamMembers: TeamMember[] = [
         achievements: ["Competitive Athlete", "Professional Racer"],
         category: "senior-men",
     },
-
 ]
 
 const Team = () => {
@@ -274,6 +273,10 @@ const Team = () => {
                                             src={member.image || "/placeholder.svg"}
                                             alt={member.name}
                                             className="object-cover object-[25%_35%] transition-all duration-700 group-hover:scale-110 w-full h-full"
+                                            onError={(e) => {
+                                                const target = e.target as HTMLImageElement;
+                                                target.src = "/placeholder.svg";
+                                            }}
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
@@ -389,6 +392,10 @@ const Team = () => {
                                     src={selectedPlayer.image || "/placeholder.svg"}
                                     alt={selectedPlayer.name}
                                     className="object-cover w-full h-full"
+                                    onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = "/placeholder.svg";
+                                    }}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                                 <button
