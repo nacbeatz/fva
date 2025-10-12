@@ -34,7 +34,7 @@ const AboutSection: React.FC = () => {
                             {/* Main image */}
                             <div className="relative w-72 h-72 overflow-hidden rounded-lg shadow-lg border-2 border-white">
                                 <img
-                                    src="/IMAGES/DSC_0012.jpg"
+                                    src="/IMAGES/DSC_0019.jpg"
                                     alt="About FVA"
                                     className="object-cover w-full h-full transition-transform duration-700 hover:scale-105"
                                 />
