@@ -163,13 +163,13 @@ const HeroSection: React.FC = () => {
                             transition={{ delay: 0.4, duration: 0.8 }}
                         >
                             {/* Athlete silhouette/image */}
-                            <div className="absolute inset-0 flex items-center justify-center lg:justify-end ml-44">
+                            <div className="absolute inset-0 flex items-center justify-center lg:justify-end">
                                 <motion.img
-                                    src="/team/v2_hero.webp"
-                                    alt="Athlete skating"
-                                    className="h-full w-full object-cover object-center scale-120 lg:scale-125 opacity-90"
+                                    src="/fva-hero.png"
+                                    alt="FVA Hero"
+                                    className="h-full w-auto object-contain object-center opacity-90 scale-110 lg:scale-125"
                                     initial={{ opacity: 0, scale: 1.05 }}
-                                    animate={{ opacity: 0.9, scale: 1.1 }}
+                                    animate={{ opacity: 0.9, scale: 1.15 }}
                                     transition={{ delay: 0.6, duration: 0.8 }}
                                 />
                             </div>
